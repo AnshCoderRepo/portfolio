@@ -4,6 +4,7 @@ import Hero from "./components/hero"
 import Navbar from "./components/navbar"
 import Projects from "./components/projects"
 import Reviews from "./components/reviews"
+import { CountdownBanner } from "./components/the-future-arrives-soon-cta"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <Reviews />
+      <CountdownBanner />
       <Footer/>
     </div>
   );
