@@ -45,7 +45,7 @@ export const WordsPullUp = ({ text, className = "", showAsterisk = false, style 
 export default function Hero({ children }: { children?: React.ReactNode }) {
   return (
     <section className="h-screen w-full relative">
-      <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]" suppressHydrationWarning>
         
         {/* Background video */}
         <video
@@ -73,10 +73,10 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
             
             <div className="col-span-12 lg:col-span-8">
               <h1
-                className="font-medium leading-[0.85] tracking-[-0.07em] text-[26vw] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw]"
+                className="font-small leading-[0.85] tracking-[-0.07em] text-[11vw] "
                 style={{ color: "#E1E0CC" }}
               >
-                <WordsPullUp text="Prisma" showAsterisk />
+                <WordsPullUp text="ASSolutions" showAsterisk />
               </h1>
             </div>
 
@@ -89,7 +89,7 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                 className="text-xs text-white/70 sm:text-sm md:text-base"
                 style={{ lineHeight: 1.2 }}
               >
-                Prisma is a worldwide network of visual artists, filmmakers and storytellers bound not by place, status or labels but by passion and hunger to unlock potential through our unique perspectives.
+                ASSolutions , We are group of Freelancers converting real life idea of clients  into real life projects and make their site or software
               </motion.p>
 
               <motion.button
@@ -98,7 +98,7 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                 transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="group inline-flex items-center gap-2 self-start rounded-full bg-white py-1 pl-5 pr-1 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
               >
-                Join the lab
+                lets Connect
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
                   <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
                 </span>
