@@ -64,7 +64,7 @@ export default function Footer() {
                 Stay ahead with my latest work.
               </h3>
               <p className="text-foreground/70 mb-6 leading-relaxed">
-                Join my newsletter to get updates on new projects, design tips, and modern web development insights.
+                Subscribe to get updates on new projects, design tips, and modern web development insights.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <input

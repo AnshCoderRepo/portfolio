@@ -1,6 +1,6 @@
 "use client";
 
-const navItems = ["Our story", "Collective", "Workshops", "Programs", "Inquiries"];
+const navItems = ["Our story", "Projects", "Career", "Models", "Connect"];
 
 export default function Navbar() {
   return (

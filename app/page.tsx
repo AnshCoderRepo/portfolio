@@ -6,6 +6,8 @@ import Projects from "./components/projects"
 import Reviews from "./components/reviews"
 import { CountdownBanner } from "./components/the-future-arrives-soon-cta"
 import RadarSection from "./components/radar-section"
+import FlowArtDefaultDemo from "./components/story-scroll-demo"
+import PricingSection from "./components/pricing-section"
 
 export default function Home() {
   return (
@@ -17,7 +19,9 @@ export default function Home() {
       <Projects />
       <Reviews />
       <RadarSection />
+      <FlowArtDefaultDemo />
       <CountdownBanner />
+      <PricingSection />
       <Footer/>
     </div>
   );

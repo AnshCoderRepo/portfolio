@@ -13,10 +13,9 @@ import {
 import Link from 'next/link';
 
 const data = {
-  facebookLink: 'https://facebook.com/mvpblocks',
   instaLink: 'https://instagram.com/mvpblocks',
   twitterLink: 'https://twitter.com/mvpblocks',
-  githubLink: 'https://github.com/mvpblocks',
+  githubLink: 'https://github.com/AnshCoderRepo',
   dribbbleLink: 'https://dribbble.com/mvpblocks',
   services: {
     webdev: '/web-development',
@@ -36,9 +35,9 @@ const data = {
     livechat: '/live-chat',
   },
   contact: {
-    email: 'hello@mvpblocks.com',
-    phone: '+91 8637373116',
-    address: 'Kolkata, West Bengal, India',
+    email: 'anshk1126@gmail.com',
+    phone: '+91 7070410031',
+    address: 'Gopalganj ,Bihar, India',
   },
   company: {
     name: 'Mvpblocks',
@@ -49,7 +48,6 @@ const data = {
 };
 
 const socialLinks = [
-  { icon: FaFacebook, label: 'Facebook', href: data.facebookLink },
   { icon: FaInstagram, label: 'Instagram', href: data.instaLink },
   { icon: FaTwitter, label: 'Twitter', href: data.twitterLink },
   { icon: FaGithub, label: 'GitHub', href: data.githubLink },
