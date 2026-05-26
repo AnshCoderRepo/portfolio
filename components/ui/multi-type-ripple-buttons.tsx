@@ -15,6 +15,7 @@ interface RippleButtonProps {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   disabled?: boolean;
+  type?: "submit" | "reset" | "button";
   variant?: 'default' | 'hover' | 'ghost' | 'hoverborder';
   rippleColor?: string; // User override for the JS click ripple color
   rippleDuration?: number; // Duration for the JS click ripple (all variants)
@@ -59,6 +60,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
   onClick,
   className = '',
   disabled = false,
+  type = 'button',
   variant = 'default',
   rippleColor: userProvidedRippleColor,
   rippleDuration = 600,
@@ -191,7 +193,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
       <>
         <style dangerouslySetInnerHTML={{ __html: JS_RIPPLE_KEYFRAMES }} />
         <style dangerouslySetInnerHTML={{ __html: dynamicGridHoverStyles }} />
-        <button className={hoverButtonFinalClassName} onClick={handleButtonClick} disabled={disabled}>
+        <button type={type} className={hoverButtonFinalClassName} onClick={handleButtonClick} disabled={disabled}>
           <span className="relative z-[10] pointer-events-none">{children}</span>
           {jsRippleElements}
           <div
@@ -221,6 +223,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
         <style dangerouslySetInnerHTML={{ __html: JS_RIPPLE_KEYFRAMES }} />
         <style dangerouslySetInnerHTML={{ __html: dynamicGridHoverStyles }} />
         <button
+          type={type}
           className={hoverBorderButtonFinalClassName}
           onClick={handleButtonClick}
           disabled={disabled}
@@ -254,7 +257,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
     return (
       <>
         <style dangerouslySetInnerHTML={{ __html: JS_RIPPLE_KEYFRAMES }} />
-        <button className={ghostButtonFinalClassName} onClick={handleButtonClick} disabled={disabled}>
+        <button type={type} className={ghostButtonFinalClassName} onClick={handleButtonClick} disabled={disabled}>
           <span className="relative z-10 pointer-events-none">{children}</span>
           {jsRippleElements}
         </button>
@@ -269,7 +272,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: JS_RIPPLE_KEYFRAMES }} />
-      <button className={buttonClasses} onClick={handleButtonClick} disabled={disabled}>
+      <button type={type} className={buttonClasses} onClick={handleButtonClick} disabled={disabled}>
         <span className="relative z-[1] pointer-events-none">{children}</span>
         {jsRippleElements}
       </button>
