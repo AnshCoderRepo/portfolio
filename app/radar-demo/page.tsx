@@ -1,5 +1,5 @@
 "use client";
-import RadarSection from "../components/radar-section";
+import RadarSection from "@/components/sections/radar-section";
 
 export default function RadarEffectDemo() {
   return (
