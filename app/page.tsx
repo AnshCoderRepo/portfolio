@@ -1,7 +1,7 @@
-import Hero from "./components/hero";
-import { CountdownBanner } from "./components/the-future-arrives-soon-cta";
-import RadarSection from "./components/radar-section";
-import FolderSection from "./components/folder-section";
+import Hero from "@/components/sections/hero";
+import { CountdownBanner } from "@/components/sections/the-future-arrives-soon-cta";
+import RadarSection from "@/components/sections/radar-section";
+import FolderSection from "@/components/sections/folder-section";
 import ClippedVideoTab from "@/components/ui/clipped-video-tab";
 
 export default function Home() {
