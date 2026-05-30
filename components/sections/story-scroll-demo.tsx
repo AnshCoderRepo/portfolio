@@ -1,4 +1,4 @@
-import FlowArt, { FlowSection } from '../../components/ui/story-scroll';
+import FlowArt, { FlowSection } from '@/components/ui/story-scroll';
 
 export default function FlowArtDefaultDemo() {
   return (
