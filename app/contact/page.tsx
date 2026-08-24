@@ -56,32 +56,32 @@ export default function ContactUsPage() {
 
       {/* 2. Seamless Interactive Contact Form overlay/section below pricing */}
       <section className="relative z-10 w-full max-w-5xl mx-auto px-4 pb-24 -mt-10">
-        <div className="backdrop-blur-[14px] bg-gradient-to-br from-black/20 to-black/10 dark:from-white/5 dark:to-white/0 border border-black/10 dark:border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl grid md:grid-cols-12 gap-10">
+        <div className="backdrop-blur-[14px] bg-gradient-to-br from-surface/80 to-surface/60 border border-surface-border rounded-3xl p-8 md:p-12 shadow-2xl grid md:grid-cols-12 gap-10">
           
           {/* Info Card column */}
           <div className="md:col-span-5 space-y-6">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-white">Let's build together</h2>
-              <p className="text-sm text-neutral-400 mt-2">
+              <h2 className="text-2xl font-bold tracking-tight text-accent-color">Let's build together</h2>
+              <p className="text-sm text-text-secondary mt-2">
                 Have a custom request or need enterprise consultancy? Drop us a line. Our team of premium freelancers is ready.
               </p>
             </div>
 
             <div className="space-y-4 font-sans text-sm">
-              <div className="flex items-center gap-3 text-neutral-300">
-                <div className="p-2.5 rounded-lg bg-white/10 border border-white/10">
+              <div className="flex items-center gap-3 text-accent-color/80">
+                <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <Mail className="w-4 h-4 text-cyan-400" />
                 </div>
                 <span>hello@assolutions.com</span>
               </div>
-              <div className="flex items-center gap-3 text-neutral-300">
-                <div className="p-2.5 rounded-lg bg-white/10 border border-white/10">
+              <div className="flex items-center gap-3 text-accent-color/80">
+                <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <Phone className="w-4 h-4 text-cyan-400" />
                 </div>
                 <span>+1 (555) 019-2834</span>
               </div>
-              <div className="flex items-center gap-3 text-neutral-300">
-                <div className="p-2.5 rounded-lg bg-white/10 border border-white/10">
+              <div className="flex items-center gap-3 text-accent-color/80">
+                <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <MapPin className="w-4 h-4 text-cyan-400" />
                 </div>
                 <span>San Francisco, CA</span>
@@ -93,41 +93,41 @@ export default function ContactUsPage() {
           <form onSubmit={handleSubmit} className="md:col-span-7 space-y-4 font-sans text-sm">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-xs text-neutral-400">Your Name</label>
+                <label className="text-xs text-text-secondary">Your Name</label>
                 <input
                   type="text"
                   required
-                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white focus:outline-none focus:border-cyan-400 transition"
+                  className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition"
                   placeholder="John Doe"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-neutral-400">Email Address</label>
+                <label className="text-xs text-text-secondary">Email Address</label>
                 <input
                   type="email"
                   required
-                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white focus:outline-none focus:border-cyan-400 transition"
+                  className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition"
                   placeholder="john@example.com"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs text-neutral-400">Subject</label>
+              <label className="text-xs text-text-secondary">Subject</label>
               <input
                 type="text"
                 required
-                className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white focus:outline-none focus:border-cyan-400 transition"
+                className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition"
                 placeholder="Custom Project Details"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs text-neutral-400">Message</label>
+              <label className="text-xs text-text-secondary">Message</label>
               <textarea
                 rows={4}
                 required
-                className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white focus:outline-none focus:border-cyan-400 transition resize-none"
+                className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition resize-none"
                 placeholder="Tell us about your requirements, project timelines, and goals..."
               />
             </div>

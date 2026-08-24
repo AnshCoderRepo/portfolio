@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ArrowRight, Sparkles, Clock } from "lucide-react"
+import RevealSection from "@/components/ui/reveal-section"
 
 const TARGET_DATE = new Date()
 TARGET_DATE.setDate(TARGET_DATE.getDate() + 3)
@@ -77,7 +78,7 @@ export function CountdownBanner() {
         <div className="absolute w-[600px] h-[600px] bg-secondary/20 rounded-full blur-3xl bottom-0 right-0" />
       </div>
 
-      <div className="relative w-full max-w-4xl mx-auto">
+      <RevealSection direction="up" className="relative w-full max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,7 +99,7 @@ export function CountdownBanner() {
               <span>Early Access Opening Soon</span>
             </motion.div>
             
-            <h2 className="text-4xl md:text-3xl lg:text-6xl font-semibold tracking-tight text-balance text-foreground">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold tracking-tight text-balance text-foreground">
 Launching Soon
             </h2>
             
@@ -135,7 +136,7 @@ Launching Soon
             </button>
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+      </RevealSection>
+  </section>
   )
 }

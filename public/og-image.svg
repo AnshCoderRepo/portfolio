@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E1E0CC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c9c8b4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(225,224,204,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="950" cy="150" r="200" fill="rgba(225,224,204,0.03)"/>
+  <circle cx="1000" cy="180" r="150" fill="rgba(225,224,204,0.05)"/>
+  
+  <!-- Main content -->
+  <text x="100" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#E1E0CC">
+    ASSolutions
+  </text>
+  
+  <text x="100" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" fill="rgba(225,224,204,0.7)">
+    Premium Digital Product &amp; Freelancing Solutions
+  </text>
+  
+  <line x1="100" y1="360" x2="400" y2="360" stroke="url(#accent)" stroke-width="2"/>
+  
+  <text x="100" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="rgba(225,224,204,0.5)">
+    Web Systems • Mobile Apps • AI Solutions
+  </text>
+  
+  <!-- Bottom bar -->
+  <rect x="0" y="580" width="1200" height="50" fill="rgba(225,224,204,0.05)"/>
+  <text x="100" y="612" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="rgba(225,224,204,0.4)">
+    assolutions.dev
+  </text>
+</svg>
