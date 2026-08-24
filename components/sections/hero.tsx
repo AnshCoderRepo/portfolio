@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 
@@ -43,20 +43,26 @@ export const WordsPullUp = ({ text, className = "", showAsterisk = false, style 
 
 /* ---------------- Hero Section ---------------- */
 export default function Hero({ children }: { children?: React.ReactNode }) {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
+
   return (
     <section className="h-screen w-full relative">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]" suppressHydrationWarning>
         
         {/* Background video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop"
-          className="absolute inset-0 h-full w-full object-cover"
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
-        />
+        <motion.div style={{ y, opacity }} className="absolute inset-0 h-[120%] -top-[10%]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop"
+            className="h-full w-full object-cover"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
+          />
+        </motion.div>
 
         {/* Noise overlay */}
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
@@ -73,8 +79,7 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
             
             <div className="col-span-12 lg:col-span-8">
               <h1
-                className="font-small leading-[0.85] tracking-[-0.07em] text-[11vw] "
-                style={{ color: "#E1E0CC" }}
+                className="font-small leading-[0.85] tracking-[-0.07em] text-[11vw] text-accent-color"
               >
                 <WordsPullUp text="ASSolutions" showAsterisk />
               </h1>
@@ -99,8 +104,8 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                 className="group inline-flex items-center gap-2 self-start rounded-full bg-white py-1 pl-5 pr-1 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base"
               >
                 lets Connect
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
-                  <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-surface transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
+                  <ArrowRight className="h-4 w-4 text-accent-color" />
                 </span>
               </motion.button>
 

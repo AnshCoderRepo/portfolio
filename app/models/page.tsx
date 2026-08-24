@@ -80,7 +80,7 @@ export default function ModelsPage() {
   const ModelIcon = model.icon;
 
   return (
-    <div className="bg-black text-neutral-100 min-h-screen pt-24 pb-20 relative overflow-hidden">
+    <div className="bg-background text-accent-color min-h-screen pt-24 pb-20 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-indigo-900/5 blur-[160px] pointer-events-none" />
 
@@ -123,7 +123,7 @@ export default function ModelsPage() {
                       <MIcon className="w-5 h-5" />
                     </div>
                     <div className="space-y-1">
-                      <h3 className="font-semibold text-lg text-white leading-tight">{m.name}</h3>
+                      <h3 className="font-semibold text-lg text-accent-color leading-tight">{m.name}</h3>
                       <p className="text-xs text-neutral-400 font-medium">{m.tagline}</p>
                     </div>
                   </div>
@@ -143,17 +143,17 @@ export default function ModelsPage() {
           <div className="lg:col-span-7">
             <div className="bg-neutral-900/20 border border-neutral-900 rounded-3xl p-6 md:p-8 backdrop-blur-xl space-y-8 relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-[0.03] pointer-events-none">
-                <ModelIcon className="w-48 h-48 text-white" />
+                <ModelIcon className="w-48 h-48 text-accent-color" />
               </div>
 
               {/* Title & Tag */}
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <span className={`px-2.5 py-0.5 rounded bg-gradient-to-r ${model.color} text-[10px] font-mono font-bold uppercase text-white`}>
+                  <span className={`px-2.5 py-0.5 rounded bg-gradient-to-r ${model.color} text-[10px] font-mono font-bold uppercase text-accent-color`}>
                     Active Production
                   </span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">{model.name}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-accent-color tracking-tight">{model.name}</h2>
                 <p className="text-neutral-400 text-sm md:text-base leading-relaxed">{model.description}</p>
               </div>
 
@@ -161,7 +161,7 @@ export default function ModelsPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="bg-neutral-950/60 border border-neutral-900 rounded-xl p-3.5 text-center">
                   <div className="text-[9px] uppercase font-mono text-neutral-500 tracking-wider mb-1">Scale</div>
-                  <div className="text-xs font-bold text-white font-mono">{model.parameters}</div>
+                  <div className="text-xs font-bold text-accent-color font-mono">{model.parameters}</div>
                 </div>
                 <div className="bg-neutral-950/60 border border-neutral-900 rounded-xl p-3.5 text-center">
                   <div className="text-[9px] uppercase font-mono text-neutral-500 tracking-wider mb-1">Latency</div>
@@ -169,7 +169,7 @@ export default function ModelsPage() {
                 </div>
                 <div className="bg-neutral-950/60 border border-neutral-900 rounded-xl p-3.5 text-center">
                   <div className="text-[9px] uppercase font-mono text-neutral-500 tracking-wider mb-1">Context</div>
-                  <div className="text-xs font-bold text-white font-mono">{model.tokens}</div>
+                  <div className="text-xs font-bold text-accent-color font-mono">{model.tokens}</div>
                 </div>
                 <div className="bg-neutral-950/60 border border-neutral-900 rounded-xl p-3.5 text-center">
                   <div className="text-[9px] uppercase font-mono text-neutral-500 tracking-wider mb-1">Accuracy</div>

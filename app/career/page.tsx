@@ -61,7 +61,7 @@ export default function CareerPage() {
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
 
   return (
-    <div className="bg-black text-neutral-100 min-h-screen pt-24 pb-20 relative overflow-hidden">
+    <div className="bg-background text-accent-color min-h-screen pt-24 pb-20 relative overflow-hidden">
       {/* Background ambient light */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-purple-600/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-indigo-600/5 blur-[120px] pointer-events-none" />
@@ -87,7 +87,7 @@ export default function CareerPage() {
             <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
               <Globe className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold text-lg text-white mb-2">Remote-First Culture</h3>
+            <h3 className="font-semibold text-lg text-accent-color mb-2">Remote-First Culture</h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
               Work from wherever you are happiest. We support a completely distributed team across 12+ timezones.
             </p>
@@ -96,7 +96,7 @@ export default function CareerPage() {
             <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-4">
               <Zap className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold text-lg text-white mb-2">Peak Infrastructure</h3>
+            <h3 className="font-semibold text-lg text-accent-color mb-2">Peak Infrastructure</h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
               Get fully equipped with high-performance laptops, secondary screens, and robust cloud development boxes.
             </p>
@@ -105,7 +105,7 @@ export default function CareerPage() {
             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4">
               <Award className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold text-lg text-white mb-2">Growth & Support</h3>
+            <h3 className="font-semibold text-lg text-accent-color mb-2">Growth & Support</h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
               Annual wellness allowance, paid conference visits, continuous mentorship, and fully transparent equity plans.
             </p>
@@ -114,7 +114,7 @@ export default function CareerPage() {
 
         {/* Job Board */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight flex items-center gap-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-accent-color mb-8 tracking-tight flex items-center gap-3">
             <Briefcase className="text-purple-400 w-6 h-6" /> Open Opportunities
           </h2>
           <div className="space-y-4">
@@ -139,7 +139,7 @@ export default function CareerPage() {
                         <Clock className="w-3.5 h-3.5" /> {pos.type}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">{pos.title}</h3>
+                    <h3 className="text-xl font-bold text-accent-color tracking-tight">{pos.title}</h3>
                   </div>
 
                   <div className="flex items-center gap-4 justify-between md:justify-end">
@@ -148,7 +148,7 @@ export default function CareerPage() {
                       className={`p-2.5 rounded-full border transition-all duration-300 ${
                         selectedPosition === idx 
                           ? "bg-white border-white text-black -rotate-90" 
-                          : "bg-neutral-950 border-neutral-800 text-neutral-400 hover:border-neutral-700 hover:text-white"
+                          : "bg-neutral-950 border-neutral-800 text-neutral-400 hover:border-neutral-700 hover:text-accent-color"
                       }`}
                     >
                       <ArrowRight className="w-5 h-5" />

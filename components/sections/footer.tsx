@@ -57,7 +57,7 @@ export default function Footer() {
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Newsletter Section */}
-        <div className="glass-effect mb-16 rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-xl">
+        <div className="glass-effect mb-16 rounded-3xl border border-surface-border bg-surface-alt/50 p-8 md:p-12 backdrop-blur-xl">
           <div className="grid items-center gap-8 md:grid-cols-2">
             <div>
               <h3 className="mb-4 text-2xl font-bold md:text-3xl tracking-tight">
@@ -107,7 +107,7 @@ export default function Footer() {
                 <Link
                   key={i}
                   href={item.href}
-                  className="bg-white/5 hover:bg-primary/20 border border-white/10 flex h-10 w-10 items-center justify-center rounded-xl transition-all hover:scale-110"
+                  className="bg-surface-alt hover:bg-primary/20 border border-surface-border flex h-10 w-10 items-center justify-center rounded-xl transition-all hover:scale-110"
                 >
                   {item.icon}
                 </Link>
@@ -135,7 +135,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-white/10 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
+        <div className="border-surface-border flex flex-col items-center justify-between border-t pt-8 md:flex-row">
           <p className="text-foreground/40 mb-4 text-sm md:mb-0">
             © {new Date().getFullYear()} Ansh Coder. All rights reserved.
           </p>

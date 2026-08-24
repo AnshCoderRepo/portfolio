@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import RevealSection from "@/components/ui/reveal-section";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe,
@@ -185,10 +186,10 @@ export default function ClippedVideoTab()  {
   const activeItem = items[activeTab];
 
   return (
-    <section className="bg-neutral-950 py-20 overflow-hidden text-neutral-100">
+    <section className="bg-surface py-20 overflow-hidden text-accent-color">
 
       {/* TOP */}
-      <div className="max-w-7xl mx-auto px-6">
+      <RevealSection direction="up" className="max-w-7xl mx-auto px-6">
 
         <div className="grid md:grid-cols-2 gap-14 items-start mb-10">
 
@@ -208,10 +209,10 @@ export default function ClippedVideoTab()  {
 
         </div>
 
-      </div>
+      </RevealSection>
 
       {/* IMAGE/VIDEO AREA */}
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <RevealSection direction="up" delay={0.15} className="max-w-7xl mx-auto px-6 relative">
 
         {/* FLOATING TABS */}
         <div className="absolute left-10 bottom-16 z-20">
@@ -414,7 +415,7 @@ export default function ClippedVideoTab()  {
 
         </div>
 
-      </div>
+      </RevealSection>
 
     </section>
   );
