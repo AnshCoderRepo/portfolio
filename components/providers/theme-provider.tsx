@@ -20,31 +20,17 @@ export function useTheme() {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
-
-  // Apply theme class immediately on mount to prevent flash
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") as Theme | null;
-    const initial = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    setTheme(initial);
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
-    if (!mounted) return;
     const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-      root.classList.remove("light");
-    } else {
-      root.classList.add("light");
-      root.classList.remove("dark");
-    }
-    localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
+    root.classList.add("dark");
+    root.classList.remove("light");
+    localStorage.setItem("theme", "dark");
+  }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    // Keep in sleek dark mode
+    setTheme("dark");
   };
 
   return (

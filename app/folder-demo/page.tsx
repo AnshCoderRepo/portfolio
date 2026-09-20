@@ -1,6 +1,4 @@
-"use client";
-
-import DemoOne from "@/components/ui/demos/DemoOne";
+import FolderInteraction from "@/components/ui/folder";
 import { ArrowLeft, Sparkles, Code, Terminal, Layers } from "lucide-react";
 import Link from "next/link";
 
@@ -40,7 +38,7 @@ export default function FolderDemoPage() {
         {/* Demo Area */}
         <div className="w-full bg-neutral-900/40 border border-neutral-800/80 rounded-3xl p-8 backdrop-blur-xl shadow-2xl relative flex items-center justify-center min-h-[420px]">
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none rounded-3xl" />
-          <DemoOne />
+          <FolderInteraction />
         </div>
 
         {/* Instructions / Interactions Hint */}

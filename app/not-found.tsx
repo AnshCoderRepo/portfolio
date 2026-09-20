@@ -61,23 +61,23 @@ export default function NotFound() {
             key={i}
             className="absolute h-2 w-2 rounded-full bg-accent-color/20"
             initial={{
-              x: Math.random() * 400 - 200,
-              y: Math.random() * 300 - 150,
+              x: (i * 70 - 175),
+              y: (i * 50 - 125),
               opacity: 0,
             }}
             animate={{
-              y: [null, -100 - Math.random() * 200],
+              y: [null, -100 - (i * 35)],
               opacity: [0, 0.6, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 3 + (i % 3),
               repeat: Infinity,
               delay: i * 0.5,
               ease: "easeOut",
             }}
             style={{
-              left: `${20 + Math.random() * 60}%`,
-              top: `${30 + Math.random() * 40}%`,
+              left: `${20 + (i * 11) % 60}%`,
+              top: `${30 + (i * 7) % 40}%`,
             }}
           />
         ))}

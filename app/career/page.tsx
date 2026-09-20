@@ -15,47 +15,7 @@ import {
   Globe
 } from "lucide-react";
 
-const positions = [
-  {
-    title: "Senior Full-Stack Engineer",
-    department: "Engineering",
-    location: "Remote (Global)",
-    type: "Full-Time",
-    salary: "$140k - $180k",
-    description: "Lead the development of next-generation distributed web systems using React 19, Next.js 16, and high-performance server runtimes.",
-    requirements: [
-      "5+ years professional experience with React/Next.js and modern serverless platforms.",
-      "Expert knowledge of DB optimizations (Postgres, Redis) and real-time streaming architectures.",
-      "Passion for sleek user interactions, motion physics, and clean structural design."
-    ]
-  },
-  {
-    title: "AI Reasoning Researcher",
-    department: "Artificial Intelligence",
-    location: "San Francisco, CA / Hybrid",
-    type: "Full-Time",
-    salary: "$180k - $240k",
-    description: "Design and implement custom feedback loops, self-correction algorithms, and complex reasoning pipelines on top of LLMs.",
-    requirements: [
-      "Strong background in PyTorch, Python, LLM fine-tuning, and inference scaling.",
-      "Deep understanding of reinforcement learning, prompt reasoning topologies, and multimodal models.",
-      "Contributions to open-source AI projects or publications at NeurIPS/ICML is a big plus."
-    ]
-  },
-  {
-    title: "Creative Systems Designer",
-    department: "Design & UX",
-    location: "London, UK / Remote",
-    type: "Full-Time",
-    salary: "$110k - $150k",
-    description: "Craft premium digital experiences, high-fidelity UI systems, and customized animation components that push modern web boundaries.",
-    requirements: [
-      "Portfolio showcasing breathtaking visual design, customized vector systems, and interactive motion prototypes.",
-      "Proficient in TailwindCSS, CSS variables, Framer Motion, and GSAP.",
-      "Ability to translate complex user workflows into intuitive, micro-animated digital products."
-    ]
-  }
-];
+import { jobPositions, companyPerks } from "@/data/careers";
 
 export default function CareerPage() {
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
@@ -83,33 +43,20 @@ export default function CareerPage() {
 
         {/* Perks Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-24">
-          <div className="bg-neutral-900/25 border border-neutral-900 p-6 rounded-2xl">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
-              <Globe className="w-5 h-5" />
-            </div>
-            <h3 className="font-semibold text-lg text-accent-color mb-2">Remote-First Culture</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Work from wherever you are happiest. We support a completely distributed team across 12+ timezones.
-            </p>
-          </div>
-          <div className="bg-neutral-900/25 border border-neutral-900 p-6 rounded-2xl">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-4">
-              <Zap className="w-5 h-5" />
-            </div>
-            <h3 className="font-semibold text-lg text-accent-color mb-2">Peak Infrastructure</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Get fully equipped with high-performance laptops, secondary screens, and robust cloud development boxes.
-            </p>
-          </div>
-          <div className="bg-neutral-900/25 border border-neutral-900 p-6 rounded-2xl">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4">
-              <Award className="w-5 h-5" />
-            </div>
-            <h3 className="font-semibold text-lg text-accent-color mb-2">Growth & Support</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Annual wellness allowance, paid conference visits, continuous mentorship, and fully transparent equity plans.
-            </p>
-          </div>
+          {companyPerks.map((perk) => {
+            const PerkIcon = perk.icon;
+            return (
+              <div key={perk.title} className="bg-neutral-900/25 border border-neutral-900 p-6 rounded-2xl">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
+                  <PerkIcon className="w-5 h-5" />
+                </div>
+                <h3 className="font-semibold text-lg text-accent-color mb-2">{perk.title}</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  {perk.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
 
         {/* Job Board */}
@@ -118,7 +65,7 @@ export default function CareerPage() {
             <Briefcase className="text-purple-400 w-6 h-6" /> Open Opportunities
           </h2>
           <div className="space-y-4">
-            {positions.map((pos, idx) => (
+            {jobPositions.map((pos, idx) => (
               <div
                 key={idx}
                 className="bg-neutral-900/20 border border-neutral-900 rounded-2xl hover:border-purple-500/30 transition-all duration-300 overflow-hidden"

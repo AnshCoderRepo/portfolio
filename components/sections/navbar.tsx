@@ -5,24 +5,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ui/theme-toggle";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Our story", href: "/story" },
-  { label: "Projects", href: "/projects" },
-  { label: "Career", href: "/career" },
-  { label: "Models", href: "/models" },
-  { label: "Contact Us", href: "/contact" },
-];
+import { siteConfig } from "@/config/site";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = useState(pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Close drawer on route change
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -42,7 +35,7 @@ export default function Navbar() {
       <nav className="absolute left-1/2 top-0 z-20 -translate-x-1/2 hidden sm:block">
         <div className="flex items-center gap-3 rounded-b-2xl bg-nav-bg px-4 py-2 sm:gap-6 md:gap-12 md:rounded-b-3xl md:px-8 lg:gap-14">
           <ThemeToggle />
-          {navItems.map((item) => {
+          {siteConfig.navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
@@ -95,7 +88,7 @@ export default function Navbar() {
           <div className="flex justify-end px-4 pb-4">
             <ThemeToggle />
           </div>
-          {navItems.map((item) => {
+          {siteConfig.navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link

@@ -2,13 +2,7 @@
 
 import AnimatedCounter from "@/components/ui/animated-counter";
 import RevealSection from "@/components/ui/reveal-section";
-
-const stats = [
-  { target: 150, suffix: "+", label: "Projects Completed" },
-  { target: 50, suffix: "+", label: "Happy Clients" },
-  { target: 5, suffix: "+", label: "Years Experience" },
-  { target: 99, suffix: "%", label: "Client Satisfaction" },
-];
+import { statsData } from "@/data/stats";
 
 export default function StatsSection() {
   return (
@@ -29,7 +23,7 @@ export default function StatsSection() {
         </RevealSection>
 
         <div className="grid grid-cols-2 gap-8 sm:gap-12 md:grid-cols-4">
-          {stats.map((stat, index) => (
+          {statsData.map((stat, index) => (
             <RevealSection key={stat.label} delay={index * 0.1}>
               <AnimatedCounter
                 target={stat.target}
