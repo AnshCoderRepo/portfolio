@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useSyncExternalStore } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ArrowRight, Sparkles, Clock } from "lucide-react"
 import RevealSection from "@/components/ui/reveal-section"
@@ -57,18 +57,18 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
   )
 }
 
+const emptySubscribe = () => () => {};
+
 export function CountdownBanner() {
-  const [time, setTime] = useState<{ hours: number; minutes: number; seconds: number } | null>(null)
-  const [mounted, setMounted] = useState(false)
+  const isClient = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [time, setTime] = useState<{ hours: number; minutes: number; seconds: number }>(getTimeLeft());
 
   useEffect(() => {
-    setMounted(true)
-    setTime(getTimeLeft())
-    const interval = setInterval(() => setTime(getTimeLeft()), 1000)
-    return () => clearInterval(interval)
-  }, [])
+    const interval = setInterval(() => setTime(getTimeLeft()), 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-  if (!mounted) return null
+  if (!isClient) return null;
 
   return (
     <section className="relative w-full px-4 py-12 md:py-24 overflow-hidden flex items-center justify-center min-h-screen bg-background">

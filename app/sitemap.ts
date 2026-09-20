@@ -1,47 +1,46 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://assolutions.dev";
+import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     {
-      url: SITE_URL,
+      url: siteConfig.url,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 1,
     },
     {
-      url: `${SITE_URL}/story`,
+      url: `${siteConfig.url}/story`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}/projects`,
+      url: `${siteConfig.url}/projects`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/career`,
+      url: `${siteConfig.url}/career`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
     {
-      url: `${SITE_URL}/models`,
+      url: `${siteConfig.url}/models`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
     {
-      url: `${SITE_URL}/contact`,
+      url: `${siteConfig.url}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}/reviews`,
+      url: `${siteConfig.url}/reviews`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.6,

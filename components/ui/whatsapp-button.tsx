@@ -1,12 +1,12 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function WhatsAppButton() {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "15550192834";
+  const phone =
+    process.env.NEXT_PUBLIC_WHATSAPP_PHONE || siteConfig.contact.whatsappPhone;
   const message = encodeURIComponent(
-    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE || "Hi ASSolutions! I'd like to discuss a project."
+    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE || siteConfig.contact.whatsappMessage
   );
 
   return (

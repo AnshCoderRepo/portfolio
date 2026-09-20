@@ -2,37 +2,10 @@
 
 import React from "react";
 import { ModernPricingPage } from "@/components/ui/animated-glassy-pricing";
-import type { PricingCardProps } from "@/components/ui/animated-glassy-pricing";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { RippleButton } from "@/components/ui/multi-type-ripple-buttons";
-
-const myPricingPlans: PricingCardProps[] = [
-  { 
-    planName: 'Basic', 
-    description: 'Perfect for personal projects and hobbyists.', 
-    price: '0', 
-    features: ['1 User', '1GB Storage', 'Community Forum'], 
-    buttonText: 'Get Started', 
-    buttonVariant: 'secondary'
-  },
-  { 
-    planName: 'Team', 
-    description: 'Collaborate with your team on multiple projects.', 
-    price: '49', 
-    features: ['10 Users', '100GB Storage', 'Email Support', 'Shared Workspaces'], 
-    buttonText: 'Choose Team Plan', 
-    isPopular: true, 
-    buttonVariant: 'primary' 
-  },
-  { 
-    planName: 'Agency', 
-    description: 'Manage all your clients under one roof.', 
-    price: '149', 
-    features: ['Unlimited Users', '1TB Storage', 'Dedicated Support', 'Client Invoicing'], 
-    buttonText: 'Contact Us', 
-    buttonVariant: 'primary' 
-  },
-];
+import { pricingPlans } from "@/data/pricing";
+import { siteConfig } from "@/config/site";
 
 export default function ContactUsPage() {
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,7 +23,7 @@ export default function ContactUsPage() {
           </>
         }
         subtitle="Start for free, then grow with us. Reach out directly to initiate custom projects."
-        plans={myPricingPlans}
+        plans={pricingPlans}
         showAnimatedBackground={true}
       />
 
@@ -61,7 +34,7 @@ export default function ContactUsPage() {
           {/* Info Card column */}
           <div className="md:col-span-5 space-y-6">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-accent-color">Let's build together</h2>
+              <h2 className="text-2xl font-bold tracking-tight text-accent-color">Let&apos;s build together</h2>
               <p className="text-sm text-text-secondary mt-2">
                 Have a custom request or need enterprise consultancy? Drop us a line. Our team of premium freelancers is ready.
               </p>
@@ -72,19 +45,19 @@ export default function ContactUsPage() {
                 <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <Mail className="w-4 h-4 text-cyan-400" />
                 </div>
-                <span>hello@assolutions.com</span>
+                <span>{siteConfig.contact.email}</span>
               </div>
               <div className="flex items-center gap-3 text-accent-color/80">
                 <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <Phone className="w-4 h-4 text-cyan-400" />
                 </div>
-                <span>+1 (555) 019-2834</span>
+                <span>{siteConfig.contact.phone}</span>
               </div>
               <div className="flex items-center gap-3 text-accent-color/80">
                 <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <MapPin className="w-4 h-4 text-cyan-400" />
                 </div>
-                <span>San Francisco, CA</span>
+                <span>{siteConfig.contact.location}</span>
               </div>
             </div>
           </div>

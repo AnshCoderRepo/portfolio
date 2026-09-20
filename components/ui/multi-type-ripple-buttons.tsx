@@ -173,10 +173,13 @@ const RippleButton: React.FC<RippleButtonProps> = ({
           key={ripple.key}
           className="absolute rounded-full animate-js-ripple-effect"
           style={{
-            left: ripple.x, top: ripple.y, width: ripple.size, height: ripple.size,
+            left: ripple.x,
+            top: ripple.y,
+            width: ripple.size,
+            height: ripple.size,
             backgroundColor: ripple.color,
-            ['--ripple-duration' as any]: `${rippleDuration}ms`,
-          } as CSSProperties}
+            ...({ "--ripple-duration": `${rippleDuration}ms` } as React.CSSProperties),
+          }}
         />
       ))}
     </div>

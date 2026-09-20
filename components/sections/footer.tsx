@@ -9,6 +9,7 @@ import {
   FaGithub 
 } from 'react-icons/fa6';
 import Link from 'next/link';
+import { siteConfig } from '@/config/site';
 
 const footerColumns = [
   {
@@ -39,11 +40,11 @@ const legalLinks = [
 ];
 
 const socialIcons = [
-  { icon: <FaInstagram className="h-5 w-5" />, href: '#' },
-  { icon: <FaTwitter className="h-5 w-5" />, href: '#' },
-  { icon: <FaLinkedin className="h-5 w-5" />, href: '#' },
-  { icon: <FaYoutube className="h-5 w-5" />, href: '#' },
-  { icon: <FaGithub className="h-5 w-5" />, href: '#' },
+  { icon: <FaInstagram className="h-5 w-5" />, href: siteConfig.socialLinks.instagram, label: 'Instagram' },
+  { icon: <FaTwitter className="h-5 w-5" />, href: siteConfig.socialLinks.twitter, label: 'Twitter' },
+  { icon: <FaLinkedin className="h-5 w-5" />, href: siteConfig.socialLinks.linkedin, label: 'LinkedIn' },
+  { icon: <FaYoutube className="h-5 w-5" />, href: siteConfig.socialLinks.youtube, label: 'YouTube' },
+  { icon: <FaGithub className="h-5 w-5" />, href: siteConfig.socialLinks.github, label: 'GitHub' },
 ];
 
 export default function Footer() {
@@ -136,9 +137,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-surface-border flex flex-col items-center justify-between border-t pt-8 md:flex-row">
-          <p className="text-foreground/40 mb-4 text-sm md:mb-0">
-            © {new Date().getFullYear()} Ansh Coder. All rights reserved.
-          </p>
+            <p className="text-foreground/40 mb-4 text-sm md:mb-0">
+              © {new Date().getFullYear()} {siteConfig.authorName}. All rights reserved.
+            </p>
           <div className="flex flex-wrap justify-center gap-6">
             {legalLinks.map((text) => (
               <a
