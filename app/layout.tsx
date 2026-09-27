@@ -1,32 +1,46 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/sections/footer";
 import Navbar from "@/components/sections/navbar";
 import GlobalProviders from "@/components/providers/global-providers";
-
-
 import { siteConfig } from "@/config/site";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
+export const viewport: Viewport = {
+  themeColor: "#030611",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: siteConfig.title,
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
-  authors: [{ name: `${siteConfig.name} Team`, url: siteConfig.githubRepo }],
+  authors: [{ name: siteConfig.authorName, url: siteConfig.url }],
   creator: siteConfig.authorName,
+  publisher: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: siteConfig.url,
+  },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -67,6 +81,53 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
+  category: "technology",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      "name": siteConfig.name,
+      "url": siteConfig.url,
+      "logo": `${siteConfig.url}/og-image.svg`,
+      "sameAs": [
+        siteConfig.socialLinks.github,
+        siteConfig.socialLinks.twitter,
+        siteConfig.socialLinks.linkedin,
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": siteConfig.contact.email,
+        "contactType": "customer support",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      "url": siteConfig.url,
+      "name": siteConfig.name,
+      "description": siteConfig.description,
+      "publisher": {
+        "@id": `${siteConfig.url}/#organization`,
+      },
+      "inLanguage": "en-US",
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteConfig.url}/#service`,
+      "name": siteConfig.name,
+      "url": siteConfig.url,
+      "priceRange": "$$$",
+      "description": siteConfig.description,
+      "founder": {
+        "@type": "Person",
+        "name": siteConfig.authorName,
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -83,7 +144,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="canonical" href={siteConfig.url} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-accent-color/30 selection:text-accent-color" suppressHydrationWarning>
         <GlobalProviders>

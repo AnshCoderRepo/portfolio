@@ -15,7 +15,7 @@ export default function BookACall() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 2.5, type: "spring", stiffness: 200 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 rounded-full border border-accent-color/20 bg-accent-color/10 px-4 py-3 text-sm font-medium text-accent-color backdrop-blur-sm transition-all hover:border-accent-color/40 hover:bg-accent-color/20"
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex items-center gap-2 rounded-full border border-accent-color/20 bg-accent-color/10 px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-medium text-accent-color backdrop-blur-sm transition-all hover:border-accent-color/40 hover:bg-accent-color/20"
       >
         <Calendar className="h-4 w-4" />
         <span className="hidden sm:inline">Book a Call</span>
