@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ ASSolutions
+# ⚡ NSSolutions
 ### **Next-Generation Digital Product & Freelancing Solutions**
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -11,10 +11,10 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
-  <strong>ASSolutions</strong> is a premier freelancing collective engineered by <strong>Ansh Coder</strong>, dedicated to transforming real-world client visions into high-performance web systems, cross-platform mobile apps, resilient cloud architectures, and bespoke AI/ML integrations.
+  <strong>NSSolutions</strong> is a premier freelancing collective engineered by <strong>Ansh Coder</strong>, dedicated to transforming real-world client visions into high-performance web systems, cross-platform mobile apps, resilient cloud architectures, and bespoke AI/ML integrations.
 </p>
 
-[Explore Website](https://assolutions.dev) • [View Projects](https://assolutions.dev/projects) • [Estimate Project Cost](https://assolutions.dev#estimator) • [Get in Touch](https://assolutions.dev/contact)
+[Explore Website](https://nssolutions.dev) • [View Projects](https://nssolutions.dev/projects) • [Estimate Project Cost](https://nssolutions.dev#estimator) • [Get in Touch](https://nssolutions.dev/contact)
 
 ---
 
@@ -37,11 +37,11 @@
 
 ## ✨ Overview
 
-**ASSolutions** delivers agency-grade engineering for startups and enterprise teams alike. Built from the ground up with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**, the platform provides a silky-smooth, dark-mode-first digital showroom showcasing our technical mastery, past client deliveries, AI models, and transparent pricing estimators.
+**NSSolutions** delivers agency-grade engineering for startups and enterprise teams alike. Built from the ground up with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**, the platform provides a silky-smooth, dark-mode-first digital showroom showcasing our technical mastery, past client deliveries, AI models, and transparent pricing estimators.
 
 ```
        ┌─────────────────────────────────────────────────────────┐
-       │                       ASSOLUTIONS                       │
+       │                       NSSOLUTIONS                       │
        │           Engineering Tomorrow's Experiences            │
        └────────────────────────────┬────────────────────────────┘
                                     │
@@ -89,11 +89,13 @@
 | Route | Page | Purpose |
 | :--- | :--- | :--- |
 | `/` | **Home** | Hero banner, Floating icons, Stats, 3D Folder showcase, Interactive Cost Estimator, Skill Radar, Testimonials, CTA. |
-| `/story` | **Our Story** | The origin of ASSolutions, our core philosophy, milestone timeline, and architectural pillars. |
+| `/story` | **Our Story** | The origin of NSSolutions, our core philosophy, milestone timeline, and architectural pillars. |
 | `/projects` | **Projects** | Filterable portfolio of delivered client systems with metrics (latency, requests/sec, uptime). |
 | `/models` | **AI Models** | Technical specifications, inference metrics, datasets, and architecture of custom AI models. |
 | `/career` | **Careers** | Active freelance openings, team perks, and direct resume/portfolio submission portal. |
-| `/contact` | **Contact** | Inquiry form, office details, direct WhatsApp launch, and meeting scheduler. |
+| `/contact` | **Contact** | Inquiry form (linked to backend), office details, direct WhatsApp launch, and meeting scheduler. |
+| `/admin` | **Admin Dashboard** | Protected end-to-end control room: manage Projects, Testimonials, Careers, AI Models, Inquiries, and Site Settings. |
+| `/admin/login` | **Admin Login** | Secure passcode authentication portal with session cookie management. |
 
 ---
 
@@ -190,12 +192,12 @@ All brand configuration, navigation items, contact emails, and social media hand
 
 ```typescript
 export const siteConfig = {
-  name: "ASSolutions",
+  name: "NSSolutions",
   authorName: "Ansh Coder",
-  title: "ASSolutions | Premium Digital Product & Freelancing Solutions",
-  url: "https://assolutions.dev",
+  title: "NSSolutions | Premium Digital Product & Freelancing Solutions",
+  url: "https://nssolutions.dev",
   contact: {
-    email: "hello@assolutions.com",
+    email: "hello@nssolutions.com",
     whatsappPhone: "15550192834",
     calendlyUrl: "https://calendly.com/your-link",
   },
@@ -203,11 +205,18 @@ export const siteConfig = {
 };
 ```
 
+### 🔐 Admin Panel Access & Cloud Database
+
+Access the management dashboard at **`/admin`** (or via the footer **Admin** link):
+- **Login URL**: `/admin/login`
+- **Default Master Passcode**: `nssolutions2026` (configurable via `ADMIN_PASSWORD` in `.env.local`)
+- **MongoDB Connection**: Add `MONGODB_URI` in `.env.local` to point to your MongoDB Atlas cluster. If not provided, NSSolutions operates in an automatic resilient local storage fallback mode with all data pre-seeded, so the site and admin panel function immediately!
+
 ---
 
 ## 🌐 Deployment
 
-The easiest way to deploy ASSolutions is with [Vercel](https://vercel.com/):
+The easiest way to deploy NSSolutions is with [Vercel](https://vercel.com/):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAnshCoderRepo%2Fportfolio)
 
@@ -221,13 +230,13 @@ The easiest way to deploy ASSolutions is with [Vercel](https://vercel.com/):
 
 Have a project idea or need high-tier engineering support? Let's build something extraordinary.
 
-- 🌐 **Website**: [assolutions.dev](https://assolutions.dev)
-- ✉️ **Email**: [hello@assolutions.com](mailto:hello@assolutions.com)
+- 🌐 **Website**: [nssolutions.dev](https://nssolutions.dev)
+- ✉️ **Email**: [hello@nssolutions.com](mailto:hello@nssolutions.com)
 - 💻 **GitHub**: [@AnshCoderRepo](https://github.com/AnshCoderRepo)
-- 💬 **WhatsApp**: [Start Chat](https://wa.me/15550192834?text=Hi%20ASSolutions!%20I'd%20like%20to%20discuss%20a%20project.)
+- 💬 **WhatsApp**: [Start Chat](https://wa.me/15550192834?text=Hi%20NSSolutions!%20I'd%20like%20to%20discuss%20a%20project.)
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <strong>Ansh Coder</strong> & the <strong>ASSolutions</strong> Team. © 2026 All rights reserved.</sub>
+  <sub>Built with ❤️ by <strong>Ansh Coder</strong> & the <strong>NSSolutions</strong> Team. © 2026 All rights reserved.</sub>
 </div>

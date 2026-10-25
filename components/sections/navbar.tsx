@@ -12,6 +12,10 @@ export default function Navbar() {
   const [prevPathname, setPrevPathname] = useState(pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
     setMobileOpen(false);

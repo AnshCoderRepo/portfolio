@@ -14,7 +14,7 @@ export default function WhatsAppButton() {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 2, type: "spring", stiffness: 200 }}
-      className="fixed bottom-6 right-6 z-50"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
     >
       {/* Pulse rings */}
       <div className="absolute inset-0">
@@ -26,10 +26,10 @@ export default function WhatsAppButton() {
         href={`https://wa.me/${phone}?text=${message}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition-all hover:scale-110 hover:bg-green-600 hover:shadow-xl hover:shadow-green-500/25"
+        className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition-all hover:scale-110 hover:bg-green-600 hover:shadow-xl hover:shadow-green-500/25"
         aria-label="Chat on WhatsApp"
       >
-        <MessageCircle className="h-6 w-6 text-white" />
+        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
       </a>
 
       {/* Tooltip */}

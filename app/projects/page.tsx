@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
@@ -17,16 +17,41 @@ import { ImageStreamHero } from "@/components/ui/image-stream-hero";
 
 import { projects, projectHeroImages } from "@/data/projects";
 
+const iconMap: Record<string, any> = {
+  Server,
+  Layers,
+  Cpu,
+  Database,
+};
+
 export default function ProjectsPage() {
+  const [projectList, setProjectList] = useState(projects);
   const [activeProject, setActiveProject] = useState<number | null>(null);
-  const project = activeProject !== null ? projects[activeProject] : null;
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data?.length > 0) {
+          const formatted = data.data.map((item: any) => ({
+            ...item,
+            icon: item.iconName ? iconMap[item.iconName] || Layers : Layers,
+          }));
+          setProjectList(formatted);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const project = activeProject !== null ? projectList[activeProject] : null;
+  const currentImages = projectList.map((p) => ({ src: p.image, alt: p.title }));
 
   return (
     <div className="bg-background text-accent-color min-h-screen relative overflow-hidden">
       {/* Hero corridor section */}
       <section className="relative h-screen">
         <ImageStreamHero
-          images={projectHeroImages}
+          images={currentImages.length > 0 ? currentImages : projectHeroImages}
           cards={7}
           speed={20}
           axis={55}
@@ -50,8 +75,8 @@ export default function ProjectsPage() {
 
             {/* Project selector pills at the bottom */}
             <div className="pointer-events-auto flex flex-wrap justify-center gap-3 px-4">
-              {projects.map((p, idx) => {
-                const PIcon = p.icon;
+              {projectList.map((p, idx) => {
+                const PIcon = p.icon || Layers;
                 return (
                   <button
                     key={idx}

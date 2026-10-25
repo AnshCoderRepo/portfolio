@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, MapPin, Phone, Zap } from 'lucide-react';
+import { Mail, MapPin, Phone, Zap, Lock } from 'lucide-react';
 import { 
   FaInstagram, 
   FaLinkedin, 
@@ -9,6 +9,7 @@ import {
   FaGithub 
 } from 'react-icons/fa6';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 
 const footerColumns = [
@@ -48,6 +49,12 @@ const socialIcons = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <footer className="bg-background text-foreground relative w-full pt-20 pb-10 overflow-hidden">
       {/* Decorative blobs */}
@@ -150,6 +157,13 @@ export default function Footer() {
                 {text}
               </a>
             ))}
+            <Link
+              href="/admin"
+              className="text-foreground/40 hover:text-primary transition-colors text-sm flex items-center gap-1"
+            >
+              <Lock className="w-3 h-3 text-cyan-400" />
+              <span>Admin</span>
+            </Link>
           </div>
         </div>
       </div>

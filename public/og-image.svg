@@ -25,7 +25,7 @@
   
   <!-- Main content -->
   <text x="100" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#E1E0CC">
-    ASSolutions
+    NSSolutions
   </text>
   
   <text x="100" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" fill="rgba(225,224,204,0.7)">
@@ -41,6 +41,6 @@
   <!-- Bottom bar -->
   <rect x="0" y="580" width="1200" height="50" fill="rgba(225,224,204,0.05)"/>
   <text x="100" y="612" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="rgba(225,224,204,0.4)">
-    assolutions.dev
+    nssolutions.dev
   </text>
 </svg>

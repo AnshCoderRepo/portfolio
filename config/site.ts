@@ -1,20 +1,20 @@
 export const siteConfig = {
-  name: "ASSolutions",
+  name: "NSSolutions",
   authorName: "Ansh Coder",
-  title: "ASSolutions | Premium Digital Product & Freelancing Solutions",
+  title: "NSSolutions | Premium Digital Product & Freelancing Solutions",
   description:
-    "ASSolutions is an elite collective of freelancers converting real-world client visions into robust web systems, mobile applications, and high-performance server architectures.",
-  url: "https://assolutions.dev",
+    "NSSolutions is an elite collective of freelancers converting real-world client visions into robust web systems, mobile applications, and high-performance server architectures.",
+  url: "https://nssolutions.dev",
   ogImage: "/og-image.svg",
-  creator: "@assolutions",
+  creator: "@nssolutions",
   githubRepo: "https://github.com/AnshCoderRepo",
 
   contact: {
-    email: "hello@assolutions.com",
+    email: "hello@nssolutions.com",
     phone: "+1 (555) 019-2834",
     location: "San Francisco, CA",
     whatsappPhone: "15550192834",
-    whatsappMessage: "Hi ASSolutions! I'd like to discuss a project.",
+    whatsappMessage: "Hi NSSolutions! I'd like to discuss a project.",
     calendlyUrl: "https://calendly.com/your-actual-link",
   },
 
@@ -29,15 +29,15 @@ export const siteConfig = {
 
   socialLinks: {
     github: "https://github.com/AnshCoderRepo",
-    twitter: "https://twitter.com/assolutions",
-    linkedin: "https://linkedin.com/company/assolutions",
-    instagram: "https://instagram.com/assolutions",
-    youtube: "https://youtube.com/@assolutions",
+    twitter: "https://twitter.com/nssolutions",
+    linkedin: "https://linkedin.com/company/nssolutions",
+    instagram: "https://instagram.com/nssolutions",
+    youtube: "https://youtube.com/@nssolutions",
   },
 
   keywords: [
     "freelance web development",
-    "ASSolutions",
+    "NSSolutions",
     "Ansh Coder",
     "premium portfolio",
     "Next.js expert",
