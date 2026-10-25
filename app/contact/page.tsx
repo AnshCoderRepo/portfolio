@@ -8,9 +8,44 @@ import { pricingPlans } from "@/data/pricing";
 import { siteConfig } from "@/config/site";
 
 export default function ContactUsPage() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [submitting, setSubmitting] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Message sent successfully!");
+    setSubmitting(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          source: "contact_page",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to deliver inquiry");
+      }
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setSubmitted(false), 8000);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -64,12 +99,26 @@ export default function ContactUsPage() {
 
           {/* Form column */}
           <form onSubmit={handleSubmit} className="md:col-span-7 space-y-4 font-sans text-sm">
+            {submitted && (
+              <div className="p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-200 text-xs">
+                ✨ Thank you! Your inquiry has been sent to NSSolutions. Our team will review your project details and follow up promptly.
+              </div>
+            )}
+
+            {error && (
+              <div className="p-3.5 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-200 text-xs">
+                ⚠️ {error}
+              </div>
+            )}
+
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-xs text-text-secondary">Your Name</label>
                 <input
                   type="text"
                   required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition"
                   placeholder="John Doe"
                 />
@@ -79,6 +128,8 @@ export default function ContactUsPage() {
                 <input
                   type="email"
                   required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition"
                   placeholder="john@example.com"
                 />
@@ -90,6 +141,8 @@ export default function ContactUsPage() {
               <input
                 type="text"
                 required
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition"
                 placeholder="Custom Project Details"
               />
@@ -100,6 +153,8 @@ export default function ContactUsPage() {
               <textarea
                 rows={4}
                 required
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl border border-surface-border bg-surface-alt text-accent-color focus:outline-none focus:border-cyan-400 transition resize-none"
                 placeholder="Tell us about your requirements, project timelines, and goals..."
               />
@@ -108,10 +163,17 @@ export default function ContactUsPage() {
             <RippleButton
               type="submit"
               variant="default"
-              className="w-full py-3 bg-cyan-400 hover:bg-cyan-300 text-black font-semibold rounded-xl flex items-center justify-center gap-2 mt-2 transition"
+              disabled={submitting}
+              className="w-full py-3 bg-cyan-400 hover:bg-cyan-300 text-black font-semibold rounded-xl flex items-center justify-center gap-2 mt-2 transition disabled:opacity-60 cursor-pointer"
             >
-              <Send className="w-4 h-4" />
-              Send Message
+              {submitting ? (
+                <span>Delivering inquiry...</span>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>Send Message</span>
+                </>
+              )}
             </RippleButton>
           </form>
 

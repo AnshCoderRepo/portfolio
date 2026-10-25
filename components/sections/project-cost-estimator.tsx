@@ -245,8 +245,9 @@ export default function ProjectCostEstimator() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const whatsappHref = `https://wa.me/919999999999?text=${encodeURIComponent(getScopeSummaryText())}`;
-  const calendlyHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/assolutions";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "7070410031";
+  const whatsappHref = `https://wa.me/${phone}?text=${encodeURIComponent(getScopeSummaryText())}`;
+  const calendlyHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/nssolutions";
 
   return (
     <section className="relative py-20 sm:py-28 overflow-hidden" id="estimator">

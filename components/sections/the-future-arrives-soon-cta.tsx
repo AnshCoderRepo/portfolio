@@ -81,10 +81,10 @@ export function CountdownBanner() {
 
   // Google Calendar Link generator for Sunday, September 27, 2026
   const calendarEventUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    "ASSolutions Service Launch Day"
+    "NSSolutions Service Launch Day"
   )}&dates=20260927T000000Z/20260927T235959Z&details=${encodeURIComponent(
-    "ASSolutions official freelance studio & service launch. Visit https://assolutions.dev"
-  )}&location=${encodeURIComponent("https://assolutions.dev")}`;
+    "NSSolutions official freelance studio & service launch. Visit https://nssolutions.dev"
+  )}&location=${encodeURIComponent("https://nssolutions.dev")}`;
 
   return (
     <section className="relative w-full px-4 py-16 sm:py-24 md:py-32 overflow-hidden flex items-center justify-center min-h-[600px] bg-background">

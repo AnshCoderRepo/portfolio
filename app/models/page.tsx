@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Cpu,
@@ -16,10 +16,34 @@ import {
 
 import { aiModels } from "@/data/models";
 
+const iconMap: Record<string, any> = {
+  Brain,
+  Cpu,
+  Layers,
+};
+
 export default function ModelsPage() {
+  const [modelsList, setModelsList] = useState(aiModels);
   const [selectedModel, setSelectedModel] = useState(0);
-  const model = aiModels[selectedModel];
-  const ModelIcon = model.icon;
+
+  useEffect(() => {
+    fetch("/api/models")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data?.length > 0) {
+          // Merge icons
+          const formatted = data.data.map((item: any) => ({
+            ...item,
+            icon: item.iconName ? iconMap[item.iconName] || Brain : Brain,
+          }));
+          setModelsList(formatted);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const model = modelsList[selectedModel] || modelsList[0] || aiModels[0];
+  const ModelIcon = model.icon || Brain;
 
   return (
     <div className="bg-background text-accent-color min-h-screen pt-24 pb-20 relative overflow-hidden">
@@ -45,8 +69,8 @@ export default function ModelsPage() {
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Left: Models selector cards */}
           <div className="lg:col-span-5 space-y-4">
-            {aiModels.map((m, idx) => {
-              const MIcon = m.icon;
+            {modelsList.map((m, idx) => {
+              const MIcon = m.icon || Brain;
               return (
                 <div
                   key={m.id}

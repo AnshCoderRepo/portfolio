@@ -7,7 +7,7 @@ export const testimonials: Testimonial[] = [
     company: "TechFlow Inc",
     rating: 5,
     content:
-      "ASSolutions transformed our legacy system into a modern, scalable platform. Their expertise in Next.js and cloud architecture is unmatched. Delivered 3 weeks ahead of schedule.",
+      "NSSolutions transformed our legacy system into a modern, scalable platform. Their expertise in Next.js and cloud architecture is unmatched. Delivered 3 weeks ahead of schedule.",
     photo:
       "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&h=150&fit=crop&crop=face",
   },
@@ -27,7 +27,7 @@ export const testimonials: Testimonial[] = [
     company: "CloudNine",
     rating: 5,
     content:
-      "Working with ASSolutions was a game-changer. They understood our vision and delivered a mobile app that exceeded all expectations. Their communication was flawless throughout.",
+      "Working with NSSolutions was a game-changer. They understood our vision and delivered a mobile app that exceeded all expectations. Their communication was flawless throughout.",
     photo:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
   },
@@ -37,7 +37,7 @@ export const testimonials: Testimonial[] = [
     company: "InnovateLabs",
     rating: 5,
     content:
-      "From concept to deployment, ASSolutions handled everything with professionalism and skill. The custom web platform they built handles 100K+ daily users without breaking a sweat.",
+      "From concept to deployment, NSSolutions handled everything with professionalism and skill. The custom web platform they built handles 100K+ daily users without breaking a sweat.",
     photo:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
   },

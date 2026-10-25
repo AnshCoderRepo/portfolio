@@ -21,18 +21,32 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function TestimonialCarousel() {
+  const [items, setItems] = useState(testimonials);
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
 
+  useEffect(() => {
+    fetch("/api/testimonials")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data?.length > 0) {
+          setItems(data.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const count = items.length;
+
   const next = useCallback(() => {
     setDirection(1);
-    setCurrent((prev) => (prev + 1) % testimonials.length);
-  }, []);
+    setCurrent((prev) => (count > 0 ? (prev + 1) % count : 0));
+  }, [count]);
 
   const prev = useCallback(() => {
     setDirection(-1);
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  }, []);
+    setCurrent((prev) => (count > 0 ? (prev - 1 + count) % count : 0));
+  }, [count]);
 
   // Auto-advance
   useEffect(() => {
@@ -71,29 +85,29 @@ export default function TestimonialCarousel() {
 
             {/* Content */}
             <p className="mb-8 text-lg leading-relaxed text-foreground/80 sm:text-xl">
-              &ldquo;{testimonials[current].content}&rdquo;
+              &ldquo;{(items[current] || testimonials[0]).content}&rdquo;
             </p>
 
             {/* Rating */}
             <div className="mb-6">
-              <StarRating rating={testimonials[current].rating} />
+              <StarRating rating={(items[current] || testimonials[0]).rating} />
             </div>
 
             {/* Author */}
             <div className="flex items-center gap-4">
               <div className="relative h-12 w-12 overflow-hidden rounded-full border border-card-border bg-surface">
                 <img
-                  src={testimonials[current].photo}
-                  alt={`${testimonials[current].name}, ${testimonials[current].role} at ${testimonials[current].company}`}
+                  src={(items[current] || testimonials[0]).photo}
+                  alt={`${(items[current] || testimonials[0]).name}, ${(items[current] || testimonials[0]).role}`}
                   className="h-full w-full object-cover"
                 />
               </div>
               <div>
                 <div className="font-semibold text-foreground">
-                  {testimonials[current].name}
+                  {(items[current] || testimonials[0]).name}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  {testimonials[current].role} at {testimonials[current].company}
+                  {(items[current] || testimonials[0]).role} at {(items[current] || testimonials[0]).company}
                 </div>
               </div>
             </div>

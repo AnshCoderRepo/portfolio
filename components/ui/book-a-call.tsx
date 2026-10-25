@@ -91,7 +91,7 @@ export default function BookACall() {
 
               {/* CTA */}
               <a
-                href={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/assolutions"}
+                href={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/nssolutions"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full rounded-xl bg-accent-color py-3 text-center text-sm font-semibold text-background transition-all hover:shadow-[0_0_30px_rgba(225,224,204,0.3)]"
@@ -102,10 +102,10 @@ export default function BookACall() {
               <p className="mt-4 text-center text-xs text-text-secondary">
                 Or email us at{" "}
                 <a
-                  href="mailto:hello@assolutions.dev"
+                  href="mailto:hello@nssolutions.dev"
                   className="text-accent-color/60 underline hover:text-accent-color"
                 >
-                  hello@assolutions.dev
+                  hello@nssolutions.dev
                 </a>
               </p>
             </motion.div>

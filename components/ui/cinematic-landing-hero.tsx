@@ -216,21 +216,21 @@ export interface CinematicHeroProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 export function CinematicHero({ 
-  brandName = "ASSOLUTIONS",
+  brandName = "NSSOLUTIONS",
   tagline1 = "Engineering Tomorrow's,",
   tagline2 = "Digital Solutions.",
   subtitle = "Crafting high-performance web systems, cloud architectures, and bespoke AI integrations engineered for effortless scale.",
   cardHeading = "Enterprise Quality, Freelance Agility.",
   cardDescription = (
     <>
-      <span className="text-white font-semibold">ASSolutions</span> is an elite engineering collective founded by{" "}
+      <span className="text-white font-semibold">NSSolutions</span> is an elite engineering collective founded by{" "}
       <span className="text-cyan-400 font-semibold">Ansh Coder</span>, transforming client visions into high-performance web systems, cloud architectures, and bespoke AI integrations.
     </>
   ),
   metricValue = 50,
   metricLabel = "Projects Delivered",
   ctaHeading = "Build your next big idea.",
-  ctaDescription = "Partner with ASSolutions to launch resilient web systems, cloud backends, and AI architectures engineered for scale.",
+  ctaDescription = "Partner with NSSolutions to launch resilient web systems, cloud backends, and AI architectures engineered for scale.",
   primaryCtaText = "Explore Projects",
   primaryCtaHref = "/projects",
   secondaryCtaText = "Get In Touch",
@@ -241,7 +241,7 @@ export function CinematicHero({
   badge2Title = "Ansh Coder",
   badge2Subtitle = "Lead Systems Architect",
   badge2Icon = "💎",
-  phoneAppTitle = "ASSolutions",
+  phoneAppTitle = "NSSolutions",
   phoneAppSubtitle = "Active Cloud & AI Node",
   phoneAppAvatar = "AC",
   phoneWidget1Title = "Cloud Infrastructure",
@@ -417,7 +417,7 @@ export function CinematicHero({
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
           </span>
-          <span className="text-neutral-200 font-semibold tracking-normal">ASSolutions Studio</span>
+          <span className="text-neutral-200 font-semibold tracking-normal">NSSolutions Studio</span>
           <span className="text-cyan-400/50">•</span>
           <span className="text-cyan-300 font-mono text-[11px] sm:text-xs flex items-center gap-1">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Next-Gen Systems & AI

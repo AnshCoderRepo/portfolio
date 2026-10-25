@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -18,7 +18,19 @@ import {
 import { jobPositions, companyPerks } from "@/data/careers";
 
 export default function CareerPage() {
+  const [positions, setPositions] = useState(jobPositions);
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("/api/careers")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data?.length > 0) {
+          setPositions(data.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="bg-background text-accent-color min-h-screen pt-24 pb-20 relative overflow-hidden">
@@ -65,7 +77,7 @@ export default function CareerPage() {
             <Briefcase className="text-purple-400 w-6 h-6" /> Open Opportunities
           </h2>
           <div className="space-y-4">
-            {jobPositions.map((pos, idx) => (
+            {positions.map((pos, idx) => (
               <div
                 key={idx}
                 className="bg-neutral-900/20 border border-neutral-900 rounded-2xl hover:border-purple-500/30 transition-all duration-300 overflow-hidden"
