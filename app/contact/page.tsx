@@ -92,13 +92,23 @@ export default function ContactUsPage() {
                 <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <Mail className="w-4 h-4 text-cyan-400" />
                 </div>
-                <span>{siteConfig.contact.email}</span>
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  {siteConfig.contact.email}
+                </a>
               </div>
               <div className="flex items-center gap-3 text-accent-color/80">
                 <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">
                   <Phone className="w-4 h-4 text-cyan-400" />
                 </div>
-                <span>{siteConfig.contact.phone}</span>
+                <a
+                  href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  {siteConfig.contact.phone}
+                </a>
               </div>
               <div className="flex items-center gap-3 text-accent-color/80">
                 <div className="p-2.5 rounded-lg bg-surface-alt border border-surface-border">

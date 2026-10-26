@@ -102,10 +102,10 @@ export default function BookACall() {
               <p className="mt-4 text-center text-xs text-text-secondary">
                 Or email us at{" "}
                 <a
-                  href="mailto:hello@nssolutions.dev"
+                  href="mailto:nssolution583@gmail.com"
                   className="text-accent-color/60 underline hover:text-accent-color"
                 >
-                  hello@nssolutions.dev
+                  nssolution583@gmail.com
                 </a>
               </p>
             </motion.div>

@@ -302,10 +302,10 @@ const initialSeedData: LocalDatabase = {
     description:
       "NSSolutions is an elite collective of freelancers converting real-world client visions into robust web systems, mobile applications, and high-performance server architectures.",
     url: "https://nssolutions.dev",
-    email: "hello@nssolutions.com",
-    phone: "+1 (555) 019-2834",
+    email: "nssolution583@gmail.com",
+    phone: "+91 7070410031",
     location: "San Francisco, CA",
-    whatsappPhone: "7070410031",
+    whatsappPhone: "917070410031",
     whatsappMessage: "Hi NSSolutions! I'd like to discuss a project.",
     calendlyUrl: "https://calendly.com/nssolutions",
   },

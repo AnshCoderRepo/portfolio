@@ -231,9 +231,10 @@ The easiest way to deploy NSSolutions is with [Vercel](https://vercel.com/):
 Have a project idea or need high-tier engineering support? Let's build something extraordinary.
 
 - 🌐 **Website**: [nssolutions.dev](https://nssolutions.dev)
-- ✉️ **Email**: [hello@nssolutions.com](mailto:hello@nssolutions.com)
+- ✉️ **Email**: [nssolution583@gmail.com](mailto:nssolution583@gmail.com)
+- 📞 **Phone**: [+91 7070410031](tel:+917070410031)
 - 💻 **GitHub**: [@AnshCoderRepo](https://github.com/AnshCoderRepo)
-- 💬 **WhatsApp**: [Start Chat](https://wa.me/15550192834?text=Hi%20NSSolutions!%20I'd%20like%20to%20discuss%20a%20project.)
+- 💬 **WhatsApp**: [Start Chat](https://wa.me/917070410031?text=Hi%20NSSolutions!%20I'd%20like%20to%20discuss%20a%20project.)
 
 ---
 
