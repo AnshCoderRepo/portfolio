@@ -2,6 +2,7 @@
 
 import Hero from "@/components/sections/hero";
 import StatsSection from "@/components/sections/stats-section";
+import PerspectiveTunnelHero from "@/components/ui/perspective-tunnel-hero";
 import ProjectCostEstimator from "@/components/sections/project-cost-estimator";
 import TestimonialCarousel from "@/components/ui/testimonial-carousel";
 import RevealSection from "@/components/ui/reveal-section";
@@ -12,6 +13,9 @@ export default function Home() {
     <div className="w-full bg-background min-h-screen text-foreground">
       <Hero />
       <StatsSection />
+      
+      {/* 3D Perspective Tunnel Services Section */}
+      <PerspectiveTunnelHero id="services" />
       
       {/* Interactive Scope & Cost Estimator */}
       <ProjectCostEstimator />
