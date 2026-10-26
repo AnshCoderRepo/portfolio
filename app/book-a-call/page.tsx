@@ -375,6 +375,26 @@ ${formData.brief}
                       </a>
                     </div>
                     <div className="flex items-center justify-between text-xs">
+                      <span className="text-muted-foreground">Prefer direct email?</span>
+                      <a
+                        href={`mailto:${siteConfig.contact.email}`}
+                        className="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-1"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>{siteConfig.contact.email}</span>
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-muted-foreground">Prefer direct phone call?</span>
+                      <a
+                        href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
+                        className="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-1"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                        <span>{siteConfig.contact.phone}</span>
+                      </a>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Prefer direct Calendly slot?</span>
                       <a
                         href={siteConfig.contact.calendlyUrl}

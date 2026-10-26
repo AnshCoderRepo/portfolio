@@ -30,10 +30,10 @@ const SiteSettingSchema = new Schema<ISiteSetting>(
         "NSSolutions is an elite collective of freelancers converting real-world client visions into robust web systems, mobile applications, and high-performance server architectures.",
     },
     url: { type: String, default: "https://nssolutions.dev" },
-    email: { type: String, default: "hello@nssolutions.com" },
-    phone: { type: String, default: "+1 (555) 019-2834" },
+    email: { type: String, default: "nssolution583@gmail.com" },
+    phone: { type: String, default: "+91 7070410031" },
     location: { type: String, default: "San Francisco, CA" },
-    whatsappPhone: { type: String, default: "15550192834" },
+    whatsappPhone: { type: String, default: "917070410031" },
     whatsappMessage: {
       type: String,
       default: "Hi NSSolutions! I'd like to discuss a project.",

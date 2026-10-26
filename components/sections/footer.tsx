@@ -1,6 +1,6 @@
 'use client';
 
-import { Zap, Lock } from 'lucide-react';
+import { Zap, Lock, Mail, Phone } from 'lucide-react';
 import { 
   FaInstagram, 
   FaLinkedin, 
@@ -73,9 +73,25 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold tracking-tighter uppercase">{siteConfig.name}</span>
             </div>
-            <p className="text-foreground/60 mb-6 leading-relaxed">
+            <p className="text-foreground/60 mb-4 leading-relaxed text-sm">
               Crafting premium digital experiences with modern web technologies and creative design.
             </p>
+            <div className="space-y-2 mb-6 text-xs text-foreground/75 font-sans">
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                <span>{siteConfig.contact.email}</span>
+              </a>
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
+                className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                <span>{siteConfig.contact.phone}</span>
+              </a>
+            </div>
             <div className="flex space-x-4">
               {socialIcons.map((item, i) => (
                 <Link

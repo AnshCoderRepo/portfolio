@@ -10,12 +10,12 @@ export const siteConfig = {
   githubRepo: "https://github.com/AnshCoderRepo",
 
   contact: {
-    email: "hello@nssolutions.com",
-    phone: "+1 (555) 019-2834",
+    email: "nssolution583@gmail.com",
+    phone: "+91 7070410031",
     location: "San Francisco, CA",
-    whatsappPhone: "15550192834",
+    whatsappPhone: "917070410031",
     whatsappMessage: "Hi NSSolutions! I'd like to discuss a project.",
-    calendlyUrl: "https://calendly.com/your-actual-link",
+    calendlyUrl: "https://calendly.com/nssolutions",
   },
 
   navItems: [
