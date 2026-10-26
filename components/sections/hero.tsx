@@ -12,7 +12,7 @@ const AgenticFactory3D = dynamic(
       <div className="w-full h-full min-h-[100vh] bg-black flex items-center justify-center">
         <div className="flex items-center gap-3 text-cyan-400 font-mono text-xs">
           <div className="w-4 h-4 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
-          <span>Assembling 3D Machine...</span>
+          <span>Initializing SDLC Engine...</span>
         </div>
       </div>
     ),

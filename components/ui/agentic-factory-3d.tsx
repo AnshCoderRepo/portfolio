@@ -93,7 +93,7 @@ export default function AgenticFactory3D({
       <div
         id="scene"
         role="img"
-        aria-label="Interactive 3D machine with five stations: Engine, Admin, Storefront, Cabinet and Checkout. Drag to rotate, scroll or pinch to zoom. Hover or tap a station to take a closer look."
+        aria-label="Interactive 3D model representing the complete Software Development Lifecycle across five phases: 01 Client Requirements, 02 Architecture & Core Engine, 03 Frontend & UI/UX, 04 CI/CD & Testing, and 05 Product Delivery. Drag to rotate, scroll or pinch to zoom. Tap any phase to inspect."
       />
       <div className="vignette" />
       <header className="topbar debug-ui">
@@ -110,20 +110,20 @@ export default function AgenticFactory3D({
             </svg>
           </div>
           <div>
-            <strong>NSSolutions Factory</strong>
-            <small>Autonomous Systems</small>
+            <strong>NSSolutions Engine</strong>
+            <small>Software Development Lifecycle</small>
           </div>
         </div>
         <div className="status" id="status">
           <i />
-          <span id="status-text">Machine running</span>
-          <span>SERIES 001</span>
+          <span id="status-text">SDLC Pipeline running</span>
+          <span>5 PHASES ACTIVE</span>
         </div>
       </header>
       <div className="scene-heading debug-ui">
-        The machine you will build <span className="index">5 MODULES / 1 SYSTEM</span>
+        Complete Software Development Lifecycle <span className="index">FROM REQUIREMENTS TO PRODUCTION DELIVERY</span>
       </div>
-      <div className="coordinates debug-ui">PROTOTYPE 01 — FROM IDEA TO PAYMENT</div>
+      <div className="coordinates debug-ui">NSSOLUTIONS SDLC — SPEC TO LIVE DEPLOYMENT</div>
       <div id="journey" className="debug-ui">
         <div className="journey-icon">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
@@ -131,8 +131,8 @@ export default function AgenticFactory3D({
           </svg>
         </div>
         <div>
-          <strong id="journey-title">New order</strong>
-          <small id="journey-detail">Cabinet · an order from Anna</small>
+          <strong id="journey-title">01. Client Requirements</strong>
+          <small id="journey-detail">Phase 1 · Project brief, user stories & technical scoping</small>
         </div>
         <div className="track">
           <i id="journey-progress" />
@@ -153,7 +153,7 @@ export default function AgenticFactory3D({
                 strokeLinejoin="round"
               />
             </svg>
-            Assembled
+            Full Lifecycle
           </button>
           <button data-mode="cutaway" aria-pressed="false">
             <svg viewBox="0 0 16 16" fill="none">
@@ -163,7 +163,7 @@ export default function AgenticFactory3D({
                 strokeLinejoin="round"
               />
             </svg>
-            Cutaway
+            Architecture
           </button>
           <button data-mode="stations" aria-pressed="false">
             <svg viewBox="0 0 16 16" fill="none">
@@ -174,13 +174,13 @@ export default function AgenticFactory3D({
                 strokeLinejoin="round"
               />
             </svg>
-            Stations
+            5 SDLC Phases
           </button>
           <button data-mode="order" aria-pressed="false">
             <svg viewBox="0 0 16 16" fill="none">
               <path d="M5 2.5l8 5.5-8 5.5v-11z" stroke="currentColor" strokeLinejoin="round" />
             </svg>
-            One order
+            Track A Project
           </button>
         </nav>
         <nav className="camera-row" aria-label="Camera">
@@ -195,7 +195,7 @@ export default function AgenticFactory3D({
             Top
           </button>
           <button data-camera="station" aria-pressed="false">
-            Station
+            Phase
           </button>
           <button data-camera="flight" aria-pressed="false">
             Flight
@@ -211,15 +211,15 @@ export default function AgenticFactory3D({
       </div>
       <footer className="footer">
         <span className="wordmark">
-          NSSolutions · <span>Autonomous 3D Systems</span>
+          NSSolutions · <span>Software Development Lifecycle</span>
         </span>
-        <span className="footer-center debug-ui">DESIGNED BY YOU</span>
+        <span className="footer-center debug-ui">FROM REQUIREMENTS TO PRODUCT DELIVERY</span>
         <span className="hint debug-ui">
           <svg width="13" height="16" viewBox="0 0 13 16" fill="none">
             <rect x="2" y="1" width="9" height="14" rx="4.5" stroke="currentColor" />
             <path d="M6.5 4v3" stroke="currentColor" strokeLinecap="round" />
           </svg>
-          Rotate. Zoom. Explore.
+          Rotate · Zoom · Tap any phase to inspect
         </span>
       </footer>
       <div id="loading">
@@ -570,9 +570,9 @@ function initMachineScene(
       c.lineWidth = 2
       c.strokeRect(2, 2, w - 4, h - 4)
       print(c, 'NSSOLUTIONS', 45, 79, 40, '#d9d8cd', 650)
-      print(c, '·  site  ·  database  ·  admin  ·  ai agents', 345, 79, 34, '#b8bdc1', 450)
-      print(c, 'AGENTIC ENGINEERING    /    YOUR HIGH IMPACT PRODUCT', 47, 133, 19, '#737e88', 500)
-      print(c, 'No. 001', 1360, 130, 23, '#c57e45')
+      print(c, '·  01 Spec  ·  02 Architecture  ·  03 Frontend  ·  04 CI/CD Tests  ·  05 Launch', 320, 79, 30, '#b8bdc1', 450)
+      print(c, 'SOFTWARE DEVELOPMENT LIFECYCLE    /    CLIENT REQUIREMENTS TO PRODUCT DELIVERY', 47, 133, 19, '#737e88', 500)
+      print(c, '5 PHASES', 1340, 130, 23, '#c57e45')
     })
     const plate = screen(machine, 7.35, 0.84, -0.4, 0.25, 3.51, engraving)
     plate.rotation.x = -Math.PI / 2
@@ -630,43 +630,43 @@ function initMachineScene(
     const definitions: StationDef[] = [
       {
         id: 'engine',
-        name: 'Engine',
+        name: 'Architecture & Engine',
         step: 2,
-        output: 'script',
+        output: 'Core APIs & DB',
         pos: [-4.15, 0.29, -0.65],
-        desc: 'Script, voice, subtitles, and a finished video.',
+        desc: 'Phase 02: High-throughput backend systems, scalable database schemas, microservice clustering, and AI integration pipelines.',
       },
       {
         id: 'admin',
-        name: 'Admin',
+        name: 'Frontend & UI/UX',
         step: 3,
-        output: 'video',
+        output: 'UI/UX & Staging',
         pos: [-1.65, 0.29, -2.03],
-        desc: 'The video queue and control over the whole system.',
+        desc: 'Phase 03: Responsive user interface engineering, interactive design systems, component libraries, and client staging preview.',
       },
       {
         id: 'storefront',
-        name: 'Storefront',
+        name: 'CI/CD & QA Testing',
         step: 4,
-        output: 'post',
+        output: 'Quality Gate Pass',
         pos: [1.5, 0.29, -2.08],
-        desc: 'The finished video becomes part of the product.',
+        desc: 'Phase 04: Automated unit & integration testing, end-to-end test suites, security vulnerability scanning, and Docker container verification.',
       },
       {
         id: 'cabinet',
-        name: 'Cabinet',
+        name: 'Client Requirements',
         step: 1,
-        output: 'order',
+        output: 'PRD & Scoping',
         pos: [4.03, 0.29, 0.12],
-        desc: 'Customers, new orders and the work history.',
+        desc: 'Phase 01: Client requirement discovery, technical PRD specification, user journey mapping, and sprint milestone scoping.',
       },
       {
         id: 'cashdesk',
-        name: 'Checkout',
+        name: 'Product Delivery',
         step: 5,
-        output: 'payment',
+        output: 'Global Launch',
         pos: [0.93, 0.29, 1.85],
-        desc: 'Payment received. Receipt printed. The machine runs.',
+        desc: 'Phase 05: Final production deployment, global CDN routing, source code & IP handover, and ongoing 24/7 SLA monitoring.',
       },
     ]
     const stations: Station[] = [],
@@ -741,13 +741,13 @@ function initMachineScene(
       const plaque = canvasTexture(512, 116, (c, w, h) => {
         c.fillStyle = '#151a20'
         c.fillRect(0, 0, w, h)
-        print(c, String(i + 1).padStart(2, '0'), 24, 76, 42, '#ff7a1a', 550)
-        print(c, d.name.toUpperCase(), 111, 73, 35, '#d7d9d7', 550)
+        print(c, String(d.step).padStart(2, '0'), 24, 76, 42, '#ff7a1a', 550)
+        print(c, d.name.toUpperCase(), 111, 73, 27, '#d7d9d7', 550)
       })
       screen(group, 1.54, 0.345, 0, 0.27, 0.891, plaque)
       const label = document.createElement('div')
       label.className = 'station-label'
-      label.innerHTML = `<div class="stem"></div><div class="label-card"><div class="label-title"><span>${String(i + 1).padStart(2, '0')}</span>${d.name}</div><div class="label-meta">Step ${d.step} · ${d.output}</div></div>`
+      label.innerHTML = `<div class="stem"></div><div class="label-card"><div class="label-title"><span>Phase ${String(d.step).padStart(2, '0')}</span>${d.name}</div><div class="label-meta">${d.output}</div></div>`
       $('labels').appendChild(label)
       cleanups.push(() => label.remove())
 
@@ -851,15 +851,15 @@ function initMachineScene(
         c.stroke()
       }
       print(c, 'NSSOLUTIONS', 28, 57, 24, '#242320', 650)
-      print(c, 'AGENT SYSTEM', 24, 103, 38, '#242320', 700)
+      print(c, 'ARCHITECTURE', 24, 103, 30, '#242320', 700)
       c.fillStyle = '#171b20'
       c.beginPath()
       c.roundRect(25, 465, 334, 123, 12)
       c.fill()
-      const texts = ['From an idea —', 'to a real product.', 'Autonomous agents', 'at work for you.']
+      const texts = ['Phase 02 — Backend', 'REST & GraphQL APIs', 'AI Neural Pipelines', 'High-Scale Database']
       const n = Math.floor(t * 0.7) % 4
-      print(c, texts[n], 45, 505, 25, '#f4f1ea', 550)
-      print(c, texts[(n + 1) % 4], 45, 547, 25, '#f4f1ea', 550)
+      print(c, texts[n], 45, 505, 22, '#f4f1ea', 550)
+      print(c, texts[(n + 1) % 4], 45, 547, 22, '#f4f1ea', 550)
       c.fillStyle = '#fff7d4'
       c.fillRect(27, 615, Math.max(10, ((t * 0.13) % 1) * 330), 5)
       videoTexture.texture.needsUpdate = true
@@ -890,8 +890,8 @@ function initMachineScene(
       const c = queue.ctx
       c.fillStyle = '#111b20'
       c.fillRect(0, 0, 640, 340)
-      print(c, 'EXECUTION QUEUE', 25, 45, 21, '#acb9b8', 550)
-      print(c, '03 / 08', 497, 45, 20, '#ff7a1a', 500)
+      print(c, 'FRONTEND & UI/UX STUDIO', 25, 45, 19, '#acb9b8', 550)
+      print(c, 'PHASE 03', 510, 45, 18, '#ff7a1a', 500)
       for (let i = 0; i < 3; i++) {
         const y = 74 + i * 76
         c.fillStyle = '#202c30'
@@ -902,17 +902,17 @@ function initMachineScene(
         c.fillRect(34, y + 10, 27, 41)
         print(
           c,
-          ['Full-Stack Deploy', 'AI Agent Pipeline', 'Cloud Infrastructure'][i],
+          ['Next.js App & Component Library', 'Responsive Design System & Theme', 'Client Interactive Staging Preview'][i],
           77,
           y + 29,
-          19,
+          18,
           '#d4d8cc'
         )
-        print(c, i === 0 ? 'DEPLOYING' : 'QUEUED', 77, y + 49, 11, i === 0 ? '#c57e45' : '#81948f')
+        print(c, i === 0 ? 'ACTIVE DEV' : 'STAGED & READY', 77, y + 49, 11, i === 0 ? '#c57e45' : '#81948f')
         c.fillStyle = '#334348'
         c.fillRect(377, y + 26, 214, 7)
         c.fillStyle = i === 0 ? '#ff7a1a' : '#607475'
-        c.fillRect(377, y + 26, i === 0 ? ((t * 0.15) % 1) * 214 : 41 + i * 27, 7)
+        c.fillRect(377, y + 26, i === 0 ? ((t * 0.15) % 1) * 214 : 214, 7)
       }
     }
     drawQueue(0)
@@ -949,8 +949,9 @@ function initMachineScene(
         c.arc(26 + i * 19, 27, 4, 0, TAU)
         c.fill()
       }
+      print(c, 'ci.nssolutions.dev/pipeline-1042', 90, 33, 14, '#6a7271')
       print(c, 'NSSOLUTIONS', 33, 100, 22, '#22282b', 650)
-      print(c, 'Home    Services    Projects', 500, 98, 14, '#6a7271')
+      print(c, 'Phase 04 · Automated CI/CD & QA Testing', 430, 98, 14, '#6a7271')
       c.fillStyle = '#ff7a1a'
       c.beginPath()
       c.roundRect(32, 131, 287, 401, 10)
@@ -962,22 +963,22 @@ function initMachineScene(
         c.ellipse(175, 320, 75 - i * 17, 94, 0.4, 0, TAU)
         c.stroke()
       }
-      print(c, 'FROM IDEA', 52, 181, 29, '#242827', 700)
-      print(c, 'TO PRODUCT.', 52, 220, 29, '#242827', 700)
-      print(c, 'Your vision.', 359, 197, 41, '#22282b', 600)
-      print(c, 'Shipped live.', 359, 252, 41, '#22282b', 600)
-      print(c, 'High-velocity architecture', 362, 300, 19, '#77807b')
-      print(c, 'that scales with your users.', 362, 329, 19, '#77807b')
+      print(c, 'PHASE 04', 52, 181, 29, '#242827', 700)
+      print(c, 'QA TESTING.', 52, 220, 24, '#242827', 700)
+      print(c, '428/428 Tests Passed', 359, 197, 34, '#22282b', 600)
+      print(c, 'Zero Vulnerabilities.', 359, 248, 34, '#22282b', 600)
+      print(c, 'Automated unit, integration, and security vulnerability scans', 362, 296, 17, '#77807b')
+      print(c, 'verifying full-stack stability before production release.', 362, 324, 17, '#77807b')
       for (let i = 0; i < 3; i++) {
         c.fillStyle = '#d1d5cd'
-        c.fillRect(362, 363 + i * 16, 400 - i * 43, 5)
+        c.fillRect(362, 360 + i * 16, 400 - i * 43, 5)
       }
       c.fillStyle = '#232a2b'
       c.beginPath()
       c.roundRect(359, 447, 279, 62, 7)
       c.fill()
-      print(c, 'Start A Project  ↗', 390, 486, 22, '#f4f1ea', 500)
-      print(c, 'ENGINEERED BY NSSOLUTIONS', 33, 571, 12, '#879088')
+      print(c, 'Quality Gate Passed ✓', 386, 486, 20, '#f4f1ea', 500)
+      print(c, 'ZERO DEFECTS · AUTOMATED REGRESSION SUITE · 100% COVERAGE', 33, 571, 12, '#879088')
     })
     screen(storefront, 2.16, 1.43, 0, 1.95, 0.011, webTexture)
     ball(storefront, 0.024, 0, 2.747, -0.05, M.dark)
@@ -998,7 +999,7 @@ function initMachineScene(
       c.lineTo(140, 100)
       c.lineTo(94, 134)
       c.fill()
-      print(c, 'DEPLOY', 17, 225, 23, '#283030', 600)
+      print(c, 'QA PASS', 17, 225, 22, '#283030', 600)
       c.fillStyle = '#b0b5b0'
       c.fillRect(17, 244, 153, 6)
       c.fillRect(17, 258, 104, 5)
@@ -1012,9 +1013,9 @@ function initMachineScene(
     const orderTex = canvasTexture(480, 460, (c, w, h) => {
       c.fillStyle = '#172224'
       c.fillRect(0, 0, w, h)
-      print(c, 'CLIENT INQUIRIES', 30, 51, 27, '#e8e8d8', 550)
-      print(c, 'Today · 3 new projects', 30, 81, 16, '#869991')
-      ;['Alpha Tech', 'Neural Dynamics', 'SaaS Corp'].forEach((n, i) => {
+      print(c, 'CLIENT REQUIREMENTS', 30, 51, 26, '#e8e8d8', 550)
+      print(c, 'Phase 01 · Discovery & Technical PRD', 30, 81, 16, '#869991')
+      ;['PRD Specification', 'Architecture Scope', 'Milestone Roadmap'].forEach((n, i) => {
         const y = 110 + i * 100
         c.fillStyle = '#283839'
         c.beginPath()
@@ -1024,10 +1025,10 @@ function initMachineScene(
         c.beginPath()
         c.arc(58, y + 40, 19, 0, TAU)
         c.fill()
-        print(c, n[0], 49, y + 47, 20, '#1b2828', 600)
-        print(c, n, 93, y + 33, 23, '#e6e8dc', 550)
-        print(c, ['Web App Sprint', 'AI Pipeline', 'Cloud Audit'][i], 93, y + 58, 15, '#94a59b')
-        print(c, '↗', 410, y + 49, 25, '#c57e45')
+        print(c, String(i + 1), 52, y + 47, 20, '#1b2828', 600)
+        print(c, n, 93, y + 33, 22, '#e6e8dc', 550)
+        print(c, ['User Stories & Scope', 'Cloud & Database Design', 'Timeline & Deliverables'][i], 93, y + 58, 15, '#94a59b')
+        print(c, '✓', 410, y + 49, 25, '#c57e45')
       })
     })
     screen(cabinet, 1.31, 1.255, 0, 1.37, 0.44, orderTex)
@@ -1056,9 +1057,9 @@ function initMachineScene(
       c.beginPath()
       c.arc(58, 98, 32, 0, TAU)
       c.fill()
-      print(c, 'A', 42, 112, 34, '#ff7a1a', 550)
-      print(c, 'Alpha', 108, 91, 38, '#222822', 600)
-      print(c, 'Project Sprint  +', 108, 138, 23, '#5b4c22', 500)
+      print(c, '01', 40, 112, 32, '#ff7a1a', 550)
+      print(c, 'Client Spec', 108, 91, 35, '#222822', 600)
+      print(c, 'Requirements Ready ✓', 108, 138, 20, '#5b4c22', 500)
     })
     screen(incoming, 0.82, 0.39, 0, 0, 0.026, nameTex)
 
@@ -1090,8 +1091,8 @@ function initMachineScene(
       const c = cashTex.ctx
       c.fillStyle = '#12231e'
       c.fillRect(0, 0, 512, 176)
-      print(c, 'MILESTONE COMPLETE', 22, 44, 23, '#9cae91', 500)
-      print(c, '100% SHIPPED', 26, 131, 56, '#ecedc7', 500)
+      print(c, 'PHASE 05 · PRODUCT DELIVERY', 22, 44, 21, '#9cae91', 500)
+      print(c, '100% SHIPPED & LIVE', 26, 131, 48, '#ecedc7', 500)
     }
     drawCash()
     screen(cashdesk, 1.015, 0.349, -0.35, 1.98, -0.459, cashTex)
@@ -1103,22 +1104,23 @@ function initMachineScene(
       c.fillStyle = '#f4f1ea'
       c.fillRect(0, 0, w, h)
       print(c, 'NSSOLUTIONS', 25, 52, 24, '#333d36', 650)
-      print(c, 'PROJECT RECEIPT', 32, 87, 19, '#566059')
+      print(c, 'DELIVERY CERTIFICATE', 25, 87, 18, '#566059')
       c.strokeStyle = '#8a9189'
       c.setLineDash([5, 6])
       c.beginPath()
       c.moveTo(22, 115)
       c.lineTo(258, 115)
       c.stroke()
-      print(c, 'Web & AI Build', 25, 154, 20, '#333d36')
-      print(c, 'Production Ready', 25, 190, 18, '#333d36')
-      print(c, 'DEPLOYED', 25, 263, 31, '#333d36', 650)
-      print(c, 'Thank you!', 25, 317, 24, '#687067')
+      print(c, 'Product: Full-Stack App', 25, 154, 18, '#333d36')
+      print(c, 'IP Handover: Complete', 25, 188, 17, '#333d36')
+      print(c, 'Global CDN: Active', 25, 222, 17, '#333d36')
+      print(c, 'SHIPPED 100%', 25, 280, 27, '#333d36', 650)
+      print(c, 'Delivered On Schedule', 25, 318, 17, '#687067')
       for (let i = 0; i < 44; i++) {
         c.fillStyle = '#333d36'
         c.fillRect(25 + i * 5, 370, 1 + (i % 3), 83)
       }
-      print(c, 'SERIES 001', 81, 496, 17, '#59635b')
+      print(c, 'VERIFIED BY NSSOLUTIONS', 42, 496, 14, '#59635b')
     })
     const rp = screen(receipt, 0.41, 0.83, 0, 0.415, 0.01, receiptTex)
     rp.material.side = THREE.DoubleSide
@@ -1134,7 +1136,7 @@ function initMachineScene(
     const rubleTex = canvasTexture(128, 128, (c, w, h) => {
       c.clearRect(0, 0, w, h)
       c.textAlign = 'center'
-      print(c, '$', 64, 95, 91, '#80561c', 650)
+      print(c, '✓', 64, 95, 80, '#80561c', 650)
     })
     const ruble = screen(coin, 0.28, 0.28, 0, 0, 0.04, rubleTex)
     ruble.material.transparent = true
@@ -1228,26 +1230,60 @@ function initMachineScene(
     const scriptTex = canvasTexture(256, 352, (c, w, h) => {
       c.fillStyle = '#eeeae0'
       c.fillRect(0, 0, w, h)
-      print(c, 'ARCHITECTURE', 24, 47, 20, '#3b403a', 650)
-      print(c, '01 / Design Spec', 24, 85, 15, '#8b8d80')
+      print(c, 'ARCHITECTURE', 24, 47, 19, '#3b403a', 650)
+      print(c, 'Phase 02 · Backend Spec', 24, 85, 14, '#8b8d80')
       for (let i = 0; i < 9; i++) {
         c.fillStyle = i === 4 ? '#c57e45' : '#aeb2a5'
         c.fillRect(24, 111 + i * 21, 190 - (i % 3) * 24, 6)
       }
-      print(c, 'VERIFIED ✓', 24, 327, 17, '#786124', 600)
+      print(c, 'CORE COMPILED ✓', 24, 327, 16, '#786124', 600)
     })
     const orderCardTex = canvasTexture(256, 352, (c, w, h) => {
       c.fillStyle = '#c57e45'
       c.fillRect(0, 0, w, h)
-      print(c, 'NEW', 21, 48, 24, '#30362d', 650)
-      print(c, 'CLIENT', 21, 79, 24, '#30362d', 650)
+      print(c, 'CLIENT', 21, 48, 24, '#30362d', 650)
+      print(c, 'BRIEF', 21, 79, 24, '#30362d', 650)
       c.strokeStyle = '#716431'
       c.lineWidth = 2
       c.strokeRect(23, 112, 210, 139)
-      print(c, 'Sprint', 42, 190, 37, '#30362d', 550)
-      print(c, 'SYSTEM / 01', 23, 320, 17, '#635728')
+      print(c, 'PRD Spec', 36, 190, 32, '#30362d', 550)
+      print(c, 'PHASE 01 ↗', 23, 320, 17, '#635728')
     })
-    const packetTextures = [orderCardTex, scriptTex, videoTexture, postTex, receiptTex]
+    const uiCardTex = canvasTexture(256, 352, (c, w, h) => {
+      c.fillStyle = '#f5f3ec'
+      c.fillRect(0, 0, w, h)
+      print(c, 'FRONTEND', 24, 47, 20, '#2c332d', 650)
+      print(c, 'Phase 03 · UI/UX Spec', 24, 85, 14, '#7c8579')
+      c.fillStyle = '#ff7a1a'
+      c.beginPath()
+      c.roundRect(24, 110, 208, 145, 8)
+      c.fill()
+      c.strokeStyle = '#222822'
+      c.lineWidth = 4
+      for (let i = 0; i < 3; i++) {
+        c.beginPath()
+        c.ellipse(128, 182, 48 - i * 12, 60, 0.4, 0, TAU)
+        c.stroke()
+      }
+      print(c, 'STAGED & READY ✓', 24, 327, 16, '#283626', 600)
+    })
+    const qaCardTex = canvasTexture(256, 352, (c, w, h) => {
+      c.fillStyle = '#162420'
+      c.fillRect(0, 0, w, h)
+      print(c, 'CI/CD & QA', 24, 47, 20, '#97b09c', 650)
+      print(c, 'Phase 04 · Test Pipeline', 24, 85, 14, '#6b8270')
+      for (let i = 0; i < 4; i++) {
+        const y = 115 + i * 40
+        c.fillStyle = '#223831'
+        c.beginPath()
+        c.roundRect(24, y, 208, 30, 4)
+        c.fill()
+        print(c, ['Unit Tests', 'E2E Tests', 'Security Scan', 'Docker Build'][i], 36, y + 20, 12, '#d6e5d8')
+        print(c, '✓', 204, y + 21, 14, '#ff7a1a')
+      }
+      print(c, 'VERIFIED 100% ✓', 24, 327, 16, '#ff7a1a', 600)
+    })
+    const packetTextures = [orderCardTex, scriptTex, uiCardTex, qaCardTex, receiptTex]
     const packets: Array<{
       group: THREE.Group
       faces: THREE.Mesh< THREE.PlaneGeometry, THREE.MeshBasicMaterial>[]
@@ -1507,7 +1543,7 @@ function initMachineScene(
         ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1" width="2.5" height="10" rx=".5"/><rect x="7.5" y="1" width="2.5" height="10" rx=".5"/></svg>'
         : '<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1l8 5-8 5z"/></svg>'
       $('status').classList.toggle('paused', !playing)
-      $('status-text').textContent = playing ? 'Machine running' : 'Machine paused'
+      $('status-text').textContent = playing ? 'SDLC Pipeline running' : 'SDLC Pipeline paused'
     }
     function play() {
       playing = true
@@ -1571,7 +1607,7 @@ function initMachineScene(
       tooltip.classList.toggle('visible', !!s)
       if (s) {
         tooltip.querySelector('strong')!.innerHTML =
-          `<span>${String(s.index + 1).padStart(2, '0')}</span>${s.name}`
+          `<span>Phase ${String(s.step).padStart(2, '0')}</span>${s.name}`
         tooltip.querySelector('p')!.textContent = s.desc
         tooltip.style.left = Math.min(width - 255, Math.max(10, (e.clientX - root.getBoundingClientRect().left) + 16)) + 'px'
         tooltip.style.top = Math.max(10, Math.min(height - 95, (e.clientY - root.getBoundingClientRect().top) - 65)) + 'px'
@@ -1622,11 +1658,11 @@ function initMachineScene(
 
     const scratch = new THREE.Vector3()
     const journeySteps = [
-      ['New order', 'Cabinet · incoming client sprint'],
-      ['Architecture Spec', 'Engine · the blueprint takes shape'],
-      ['Deploying System', 'Admin · code, tests, CI/CD pipeline'],
-      ['Live Platform', 'Storefront · high-performance web product'],
-      ['Milestone Complete', 'Checkout · verified production deployment'],
+      ['01. Client Requirements', 'Phase 1 · Project brief, user stories & technical scoping'],
+      ['02. Architecture & Engine', 'Phase 2 · High-velocity backend, API microservices & data models'],
+      ['03. Frontend & UI/UX', 'Phase 3 · Responsive interfaces, modern web frameworks & client staging'],
+      ['04. CI/CD & Automated QA', 'Phase 4 · 428 automated tests, security scans & container builds'],
+      ['05. Product Delivery & Launch', 'Phase 5 · Global CDN deployment, source code handover & live launch'],
     ]
     let prevJourney = -1,
       lastFrame = performance.now(),

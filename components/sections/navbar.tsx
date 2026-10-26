@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Calendar } from "lucide-react";
 import ThemeToggle from "@/components/ui/theme-toggle";
 import { siteConfig } from "@/config/site";
 
@@ -37,7 +37,7 @@ export default function Navbar() {
     <>
       {/* Desktop nav — hidden below sm */}
       <nav className="absolute left-1/2 top-0 z-20 -translate-x-1/2 hidden sm:block">
-        <div className="flex items-center gap-3 rounded-b-2xl bg-nav-bg px-4 py-2 sm:gap-6 md:gap-12 md:rounded-b-3xl md:px-8 lg:gap-14">
+        <div className="flex items-center gap-2.5 rounded-b-2xl bg-nav-bg px-4 py-2 sm:gap-4 md:gap-6 md:rounded-b-3xl md:px-7 lg:gap-8">
           <ThemeToggle />
           {siteConfig.navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -45,7 +45,7 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[10px] transition-colors sm:text-xs md:text-sm"
+                className="text-[10px] transition-colors sm:text-xs md:text-sm whitespace-nowrap"
                 style={{
                   color: isActive ? "var(--accent-color)" : "var(--muted-foreground)",
                   fontWeight: isActive ? "600" : "normal",
@@ -62,6 +62,17 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <Link
+            href="/book-a-call"
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+              pathname === "/book-a-call"
+                ? "bg-accent-color text-background shadow-[0_0_15px_rgba(225,224,204,0.35)]"
+                : "bg-accent-color/15 text-accent-color border border-accent-color/30 hover:bg-accent-color hover:text-background"
+            }`}
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book a Call</span>
+          </Link>
         </div>
       </nav>
 
@@ -119,6 +130,16 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <div className="pt-4 border-t border-card-border mt-2">
+            <Link
+              href="/book-a-call"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-sm font-semibold bg-accent-color text-background transition-all hover:opacity-95 shadow-md shadow-accent-color/20"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book a Call</span>
+            </Link>
+          </div>
         </div>
       </div>
     </>

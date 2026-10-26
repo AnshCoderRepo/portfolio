@@ -7,7 +7,7 @@ export interface IInquiry {
   email: string;
   subject?: string;
   message: string;
-  source: "contact_page" | "project_estimator" | "hero_lead";
+  source: "contact_page" | "project_estimator" | "hero_lead" | "book_a_call";
   budget?: string;
   timeline?: string;
   status: "unread" | "read" | "replied";
@@ -23,7 +23,7 @@ const InquirySchema = new Schema<IInquiry>(
     message: { type: String, required: true },
     source: {
       type: String,
-      enum: ["contact_page", "project_estimator", "hero_lead"],
+      enum: ["contact_page", "project_estimator", "hero_lead", "book_a_call"],
       default: "contact_page",
     },
     budget: { type: String },

@@ -241,6 +241,17 @@
   ],
   "inquiries": [
     {
+      "id": "inq-1793013970614",
+      "name": "Test Prospect",
+      "email": "test@example.com",
+      "subject": "Discovery Call: Full-Cycle Web Platform / MVP (2026-11-01)",
+      "message": "--- Discovery Call Request Details ---\nClient Name: Test Prospect\nEmail: test@example.com\nPhone / WhatsApp: +1 555 123 4567\nCompany: HyperScale Inc\n\nMeeting Logistics:\n- Preferred Platform: Google Meet\n- Preferred Date: 2026-11-01\n- Preferred Time Window: Afternoon (12:00 PM – 04:00 PM)\n\nProject Specifications:\n- Focus Area: Full-Cycle Web Platform / MVP\n- Estimated Timeline: 1 – 3 Months\n\nProject Overview / Discussion Topics:\nTesting the discovery call scheduling system.",
+      "source": "book_a_call",
+      "timeline": "1 – 3 Months",
+      "status": "unread",
+      "createdAt": "2026-10-26T11:26:10.614Z"
+    },
+    {
       "id": "inq-1792951786067",
       "name": "Enterprise Client",
       "email": "partner@scale.com",

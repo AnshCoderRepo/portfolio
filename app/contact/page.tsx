@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import { ModernPricingPage } from "@/components/ui/animated-glassy-pricing";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, Calendar, Sparkles, ArrowRight } from "lucide-react";
 import { RippleButton } from "@/components/ui/multi-type-ripple-buttons";
-import { pricingPlans } from "@/data/pricing";
 import { siteConfig } from "@/config/site";
 
 export default function ContactUsPage() {
@@ -49,18 +47,32 @@ export default function ContactUsPage() {
   };
 
   return (
-    <div className="w-full relative min-h-screen">
-      {/* 1. Main Premium Pricing Page with WebGL Canvas Background */}
-      <ModernPricingPage
-        title={
-          <>
-            Choose Your Plan & <span className="text-cyan-400 font-normal">Contact Us</span>
-          </>
-        }
-        subtitle="Start for free, then grow with us. Reach out directly to initiate custom projects."
-        plans={pricingPlans}
-        showAnimatedBackground={true}
-      />
+    <div className="w-full relative min-h-screen bg-background text-foreground pt-28 pb-20 sm:pb-32 overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] pointer-events-none overflow-hidden z-0 opacity-40">
+        <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] bg-cyan-500/20 blur-[130px] rounded-full" />
+        <div className="absolute -top-20 right-1/4 w-[450px] h-[450px] bg-purple-500/20 blur-[140px] rounded-full" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Header Hero */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-widest mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+            </span>
+            <span>Direct Engineering Consultation</span>
+          </div>
+          
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-accent-color leading-tight mb-5">
+            Let&apos;s Build Something <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">Exceptional.</span>
+          </h1>
+          
+          <p className="text-sm sm:text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto">
+            Reach out directly to discuss your system architecture, custom development, or AI integrations. Our engineering team is ready to scope and deliver.
+          </p>
+        </div>
 
       {/* 2. Seamless Interactive Contact Form overlay/section below pricing */}
       <section className="relative z-10 w-full max-w-5xl mx-auto px-4 pb-24 -mt-10">
@@ -179,6 +191,7 @@ export default function ContactUsPage() {
 
         </div>
       </section>
+      </div>
     </div>
   );
 }
