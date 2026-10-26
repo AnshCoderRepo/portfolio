@@ -3,7 +3,6 @@
 import Hero from "@/components/sections/hero";
 import StatsSection from "@/components/sections/stats-section";
 import PerspectiveTunnelHero from "@/components/ui/perspective-tunnel-hero";
-import ProjectCostEstimator from "@/components/sections/project-cost-estimator";
 import TestimonialCarousel from "@/components/ui/testimonial-carousel";
 import RevealSection from "@/components/ui/reveal-section";
 import CtaSection from "@/components/sections/cta-section";
@@ -16,9 +15,6 @@ export default function Home() {
       
       {/* 3D Perspective Tunnel Services Section */}
       <PerspectiveTunnelHero id="services" />
-      
-      {/* Interactive Scope & Cost Estimator */}
-      <ProjectCostEstimator />
       
       {/* Testimonials Section */}
       <section className="relative py-20 sm:py-28 overflow-hidden">

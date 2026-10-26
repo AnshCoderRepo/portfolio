@@ -120,7 +120,6 @@ const jsonLd = {
       "@id": `${siteConfig.url}/#service`,
       "name": siteConfig.name,
       "url": siteConfig.url,
-      "priceRange": "$$$",
       "description": siteConfig.description,
       "founder": {
         "@type": "Person",

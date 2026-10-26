@@ -1136,7 +1136,7 @@ function initMachineScene(
     const rubleTex = canvasTexture(128, 128, (c, w, h) => {
       c.clearRect(0, 0, w, h)
       c.textAlign = 'center'
-      print(c, '$', 64, 95, 91, '#80561c', 650)
+      print(c, '✓', 64, 95, 80, '#80561c', 650)
     })
     const ruble = screen(coin, 0.28, 0.28, 0, 0, 0.04, rubleTex)
     ruble.material.transparent = true
