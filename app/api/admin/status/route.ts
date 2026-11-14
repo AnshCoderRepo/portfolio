@@ -9,12 +9,14 @@ export async function GET() {
   }
 
   const status = await DataService.getStatus();
-  const [projects, testimonials, careers, models, inquiries] = await Promise.all([
+  const [projects, testimonials, careers, models, inquiries, pricing, stats] = await Promise.all([
     DataService.getProjects(),
     DataService.getTestimonials(),
     DataService.getCareers(),
     DataService.getAIModels(),
     DataService.getInquiries(),
+    DataService.getPricing(),
+    DataService.getStats(),
   ]);
 
   return NextResponse.json({
@@ -26,6 +28,8 @@ export async function GET() {
       models: models.length,
       inquiries: inquiries.length,
       unreadInquiries: inquiries.filter((i) => i.status === "unread").length,
+      pricing: pricing.length,
+      stats: stats.length,
     },
   });
 }

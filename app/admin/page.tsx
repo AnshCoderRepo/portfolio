@@ -26,9 +26,32 @@ import {
   Star,
   Clock,
   ArrowUpRight,
+  Tag,
+  TrendingUp,
 } from "lucide-react";
 
-type TabType = "overview" | "projects" | "testimonials" | "careers" | "models" | "inquiries" | "settings";
+type TabType = "overview" | "projects" | "testimonials" | "careers" | "models" | "pricing" | "stats" | "inquiries" | "settings";
+
+interface PricingItem {
+  id: string;
+  planName: string;
+  description: string;
+  price: string;
+  period?: string;
+  features: string[];
+  buttonText: string;
+  isPopular?: boolean;
+  buttonVariant?: "primary" | "secondary";
+  order?: number;
+}
+
+interface StatItem {
+  id: string;
+  target: number;
+  suffix?: string;
+  label: string;
+  order?: number;
+}
 
 interface ProjectItem {
   id: string;
@@ -127,6 +150,8 @@ export default function AdminDashboardPage() {
   const [models, setModels] = useState<AIModelItem[]>([]);
   const [inquiries, setInquiries] = useState<InquiryItem[]>([]);
   const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const [pricing, setPricing] = useState<PricingItem[]>([]);
+  const [stats, setStats] = useState<StatItem[]>([]);
 
   // Notifications
   const [toastMessage, setToastMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
@@ -137,6 +162,8 @@ export default function AdminDashboardPage() {
   const [careerModal, setCareerModal] = useState<{ open: boolean; item?: CareerItem }>({ open: false });
   const [modelModal, setModelModal] = useState<{ open: boolean; item?: AIModelItem }>({ open: false });
   const [inquiryModal, setInquiryModal] = useState<{ open: boolean; item?: InquiryItem }>({ open: false });
+  const [pricingModal, setPricingModal] = useState<{ open: boolean; item?: PricingItem }>({ open: false });
+  const [statModal, setStatModal] = useState<{ open: boolean; item?: StatItem }>({ open: false });
   const [dbInfoModal, setDbInfoModal] = useState(false);
 
   const showToast = (text: string, type: "success" | "error" = "success") => {
@@ -164,13 +191,15 @@ export default function AdminDashboardPage() {
       }
 
       // 3. Parallel fetch all collections
-      const [pRes, tRes, cRes, mRes, iRes, setRes] = await Promise.all([
+      const [pRes, tRes, cRes, mRes, iRes, setRes, prRes, stRes] = await Promise.all([
         fetch("/api/projects"),
         fetch("/api/testimonials"),
         fetch("/api/careers"),
         fetch("/api/models"),
         fetch("/api/inquiries"),
         fetch("/api/settings"),
+        fetch("/api/pricing"),
+        fetch("/api/stats"),
       ]);
 
       if (pRes.ok) setProjects((await pRes.json()).data || []);
@@ -179,6 +208,8 @@ export default function AdminDashboardPage() {
       if (mRes.ok) setModels((await mRes.json()).data || []);
       if (iRes.ok) setInquiries((await iRes.json()).data || []);
       if (setRes.ok) setSettings((await setRes.json()).data || null);
+      if (prRes.ok) setPricing((await prRes.json()).data || []);
+      if (stRes.ok) setStats((await stRes.json()).data || []);
     } catch (err) {
       console.error("Dashboard data load error:", err);
       showToast("Error synchronizing dashboard data", "error");
@@ -434,6 +465,108 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Pricing Plans
+  const handleSavePricing = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const id = pricingModal.item?.id;
+
+    const body = {
+      planName: form.get("planName") as string,
+      description: form.get("description") as string,
+      price: form.get("price") as string,
+      period: (form.get("period") as string) || "month",
+      features: (form.get("features") as string).split("\n").map((f) => f.trim()).filter(Boolean),
+      buttonText: (form.get("buttonText") as string) || "Get Started",
+      isPopular: form.get("isPopular") === "on",
+      buttonVariant: (form.get("buttonVariant") as "primary" | "secondary") || "primary",
+    };
+
+    const url = id ? `/api/pricing/${id}` : "/api/pricing";
+    const method = id ? "PUT" : "POST";
+
+    const res = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (id) {
+        setPricing((prev) => prev.map((p) => (p.id === id ? data.data : p)));
+        showToast("Pricing plan updated!");
+      } else {
+        setPricing((prev) => [...prev, data.data]);
+        showToast("Pricing plan created!");
+      }
+      setPricingModal({ open: false });
+    } else {
+      showToast("Failed to save pricing plan", "error");
+    }
+  };
+
+  const handleDeletePricing = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this pricing plan?")) return;
+    const res = await fetch(`/api/pricing/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      setPricing((prev) => prev.filter((p) => p.id !== id));
+      showToast("Pricing plan deleted");
+    } else {
+      showToast("Failed to delete pricing plan", "error");
+    }
+  };
+
+  // Stats
+  const handleSaveStat = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const id = statModal.item?.id;
+
+    const targetVal = parseInt(form.get("target") as string, 10) || 0;
+    const suffixVal = (form.get("suffix") as string) || "+";
+    const labelVal = form.get("label") as string;
+
+    let updatedStats: StatItem[];
+    if (id) {
+      updatedStats = stats.map((s) => (s.id === id ? { ...s, target: targetVal, suffix: suffixVal, label: labelVal } : s));
+    } else {
+      updatedStats = [...stats, { id: `stat-${Date.now()}`, target: targetVal, suffix: suffixVal, label: labelVal, order: stats.length + 1 }];
+    }
+
+    const res = await fetch("/api/stats", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedStats),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      setStats(data.data);
+      showToast("Stats updated!");
+      setStatModal({ open: false });
+    } else {
+      showToast("Failed to update stats", "error");
+    }
+  };
+
+  const handleDeleteStat = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this stat?")) return;
+    const updatedStats = stats.filter((s) => s.id !== id);
+    const res = await fetch("/api/stats", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedStats),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setStats(data.data);
+      showToast("Stat deleted");
+    } else {
+      showToast("Failed to delete stat", "error");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#030611] text-neutral-100 flex flex-col font-sans">
       {/* Toast Notification */}
@@ -528,6 +661,8 @@ export default function AdminDashboardPage() {
               { id: "testimonials", label: "Testimonials", icon: MessageSquare, count: testimonials.length },
               { id: "careers", label: "Careers", icon: Briefcase, count: careers.length },
               { id: "models", label: "AI Models", icon: Brain, count: models.length },
+              { id: "pricing", label: "Pricing", icon: Tag, count: pricing.length },
+              { id: "stats", label: "Live Stats", icon: TrendingUp, count: stats.length },
               {
                 id: "inquiries",
                 label: "Inquiries",
@@ -955,6 +1090,137 @@ export default function AdminDashboardPage() {
                             className="p-2 rounded-xl border border-neutral-800 text-neutral-400 hover:text-rose-400 transition"
                           >
                             <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* ---------------- 5b. PRICING PLANS ---------------- */}
+              {activeTab === "pricing" && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h2 className="text-xl font-bold text-white">Pricing Plans</h2>
+                      <p className="text-xs text-neutral-400">
+                        Packages and subscription offerings shown on /pricing
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setPricingModal({ open: true })}
+                      className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-cyan-400 text-black hover:bg-cyan-300 flex items-center gap-1.5 transition cursor-pointer"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Add Plan</span>
+                    </button>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {pricing.map((plan) => (
+                      <div
+                        key={plan.id}
+                        className={`p-5 rounded-2xl border flex flex-col justify-between ${
+                          plan.isPopular
+                            ? "bg-neutral-900/90 border-cyan-500/50 shadow-lg shadow-cyan-500/10"
+                            : "bg-neutral-900/40 border-neutral-800"
+                        }`}
+                      >
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <h3 className="font-bold text-base text-white">{plan.planName}</h3>
+                            {plan.isPopular && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                                Popular
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-2xl font-black text-white">${plan.price}</span>
+                            <span className="text-xs text-neutral-400">/{plan.period || "month"}</span>
+                          </div>
+                          <p className="text-xs text-neutral-400">{plan.description}</p>
+                          <ul className="space-y-1.5 pt-2 border-t border-neutral-800/80">
+                            {plan.features?.map((f, i) => (
+                              <li key={i} className="text-xs text-neutral-300 flex items-center gap-2">
+                                <Check className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                                <span>{f}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-4 mt-4 border-t border-neutral-800">
+                          <span className="text-[10px] font-mono text-neutral-400">
+                            CTA: {plan.buttonText}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => setPricingModal({ open: true, item: plan })}
+                              className="p-1.5 rounded-lg border border-neutral-800 text-neutral-300 hover:text-cyan-400 transition"
+                            >
+                              <Edit className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => handleDeletePricing(plan.id)}
+                              className="p-1.5 rounded-lg border border-neutral-800 text-neutral-400 hover:text-rose-400 transition"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* ---------------- 5c. LIVE STATS ---------------- */}
+              {activeTab === "stats" && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h2 className="text-xl font-bold text-white">Live Stats Counters</h2>
+                      <p className="text-xs text-neutral-400">
+                        Animated numbers and metrics featured in the homepage By The Numbers section
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setStatModal({ open: true })}
+                      className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-cyan-400 text-black hover:bg-cyan-300 flex items-center gap-1.5 transition cursor-pointer"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Add Stat</span>
+                    </button>
+                  </div>
+
+                  <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
+                    {stats.map((s) => (
+                      <div
+                        key={s.id}
+                        className="p-5 rounded-2xl bg-neutral-900/40 border border-neutral-800 flex flex-col items-center text-center justify-between gap-3"
+                      >
+                        <div>
+                          <div className="text-3xl font-black text-cyan-400">
+                            {s.target}
+                            <span className="text-indigo-400">{s.suffix}</span>
+                          </div>
+                          <p className="text-xs text-neutral-300 font-medium mt-1">{s.label}</p>
+                        </div>
+
+                        <div className="flex items-center gap-2 pt-2 border-t border-neutral-800 w-full justify-center">
+                          <button
+                            onClick={() => setStatModal({ open: true, item: s })}
+                            className="p-1.5 rounded-lg border border-neutral-800 text-neutral-300 hover:text-cyan-400 transition"
+                          >
+                            <Edit className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteStat(s.id)}
+                            className="p-1.5 rounded-lg border border-neutral-800 text-neutral-400 hover:text-rose-400 transition"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </div>
@@ -1643,6 +1909,205 @@ export default function AdminDashboardPage() {
                   className="px-5 py-2 rounded-xl bg-cyan-400 text-black font-semibold hover:bg-cyan-300"
                 >
                   Save Model
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 4b. Pricing Add/Edit Modal */}
+      {pricingModal.open && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-lg p-6 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <h3 className="font-bold text-sm text-white">
+                {pricingModal.item ? "Edit Pricing Plan" : "Add Pricing Plan"}
+              </h3>
+              <button
+                onClick={() => setPricingModal({ open: false })}
+                className="text-neutral-400 hover:text-white"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSavePricing} className="space-y-3.5 text-xs font-sans">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-neutral-300">Plan Name</label>
+                  <input
+                    name="planName"
+                    required
+                    defaultValue={pricingModal.item?.planName || ""}
+                    placeholder="e.g. Pro Suite"
+                    className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-neutral-300">Price ($)</label>
+                  <input
+                    name="price"
+                    required
+                    defaultValue={pricingModal.item?.price || "49"}
+                    placeholder="49"
+                    className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-neutral-300">Billing Period</label>
+                <input
+                  name="period"
+                  defaultValue={pricingModal.item?.period || "month"}
+                  placeholder="month or project"
+                  className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-neutral-300">Description</label>
+                <input
+                  name="description"
+                  required
+                  defaultValue={pricingModal.item?.description || ""}
+                  placeholder="Short summary of what this plan delivers"
+                  className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-neutral-300">Features List (one per line)</label>
+                <textarea
+                  name="features"
+                  required
+                  rows={4}
+                  defaultValue={pricingModal.item?.features?.join("\n") || "5 Team Members\nUnlimited Cloud Storage\n24/7 Priority Support"}
+                  placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+                  className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400 font-mono text-[11px]"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-neutral-300">Button Text</label>
+                  <input
+                    name="buttonText"
+                    defaultValue={pricingModal.item?.buttonText || "Choose Plan"}
+                    className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-neutral-300">Button Style</label>
+                  <select
+                    name="buttonVariant"
+                    defaultValue={pricingModal.item?.buttonVariant || "primary"}
+                    className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                  >
+                    <option value="primary">Primary (Cyan Fill)</option>
+                    <option value="secondary">Secondary (Outline)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 pt-1">
+                <input
+                  type="checkbox"
+                  name="isPopular"
+                  id="popular_check"
+                  defaultChecked={pricingModal.item?.isPopular ?? false}
+                  className="rounded border-neutral-700"
+                />
+                <label htmlFor="popular_check" className="text-neutral-300 text-xs">
+                  Highlight as Popular / Recommended Plan
+                </label>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-3 border-t border-neutral-800">
+                <button
+                  type="button"
+                  onClick={() => setPricingModal({ open: false })}
+                  className="px-4 py-2 rounded-xl border border-neutral-800 text-neutral-300 hover:bg-neutral-800"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-cyan-400 text-black font-semibold hover:bg-cyan-300"
+                >
+                  Save Plan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 4c. Stat Add/Edit Modal */}
+      {statModal.open && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-sm p-6 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <h3 className="font-bold text-sm text-white">
+                {statModal.item ? "Edit Stat Metric" : "Add Stat Metric"}
+              </h3>
+              <button
+                onClick={() => setStatModal({ open: false })}
+                className="text-neutral-400 hover:text-white"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveStat} className="space-y-3.5 text-xs font-sans">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-neutral-300">Target Value</label>
+                  <input
+                    name="target"
+                    type="number"
+                    required
+                    defaultValue={statModal.item?.target ?? 100}
+                    placeholder="100"
+                    className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-neutral-300">Suffix Symbol</label>
+                  <input
+                    name="suffix"
+                    defaultValue={statModal.item?.suffix ?? "+"}
+                    placeholder="+ or %"
+                    className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-neutral-300">Label Text</label>
+                <input
+                  name="label"
+                  required
+                  defaultValue={statModal.item?.label || ""}
+                  placeholder="e.g. Projects Completed"
+                  className="w-full px-3 py-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-3 border-t border-neutral-800">
+                <button
+                  type="button"
+                  onClick={() => setStatModal({ open: false })}
+                  className="px-4 py-2 rounded-xl border border-neutral-800 text-neutral-300 hover:bg-neutral-800"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-cyan-400 text-black font-semibold hover:bg-cyan-300"
+                >
+                  Save Stat
                 </button>
               </div>
             </form>

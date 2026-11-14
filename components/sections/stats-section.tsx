@@ -1,10 +1,25 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import AnimatedCounter from "@/components/ui/animated-counter";
 import RevealSection from "@/components/ui/reveal-section";
 import { statsData } from "@/data/stats";
+import type { StatItem } from "@/types";
 
 export default function StatsSection() {
+  const [stats, setStats] = useState<StatItem[]>(statsData);
+
+  useEffect(() => {
+    fetch("/api/stats")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setStats(data.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <section className="relative py-20 sm:py-28">
       {/* Background glow */}
@@ -23,8 +38,8 @@ export default function StatsSection() {
         </RevealSection>
 
         <div className="grid grid-cols-2 gap-8 sm:gap-12 md:grid-cols-4">
-          {statsData.map((stat, index) => (
-            <RevealSection key={stat.label} delay={index * 0.1}>
+          {stats.map((stat, index) => (
+            <RevealSection key={`${stat.label}-${index}`} delay={index * 0.1}>
               <AnimatedCounter
                 target={stat.target}
                 suffix={stat.suffix}
