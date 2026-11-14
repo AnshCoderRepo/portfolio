@@ -298,5 +298,54 @@
     "whatsappPhone": "917070410031",
     "whatsappMessage": "Hi NSSolutions! I'd like to discuss a project.",
     "calendlyUrl": "https://calendly.com/nssolutions"
-  }
+  },
+  "pricing": [
+    {
+      "id": "price-1",
+      "planName": "Basic",
+      "description": "Perfect for personal projects and hobbyists.",
+      "price": "0",
+      "features": ["1 User", "1GB Storage", "Community Forum"],
+      "buttonText": "Get Started",
+      "buttonVariant": "secondary",
+      "order": 1
+    },
+    {
+      "id": "price-2",
+      "planName": "Team",
+      "description": "Collaborate with your team on multiple projects.",
+      "price": "49",
+      "features": [
+        "10 Users",
+        "100GB Storage",
+        "Email Support",
+        "Shared Workspaces"
+      ],
+      "buttonText": "Choose Team Plan",
+      "isPopular": true,
+      "buttonVariant": "primary",
+      "order": 2
+    },
+    {
+      "id": "price-3",
+      "planName": "Agency",
+      "description": "Manage all your clients under one roof.",
+      "price": "149",
+      "features": [
+        "Unlimited Users",
+        "1TB Storage",
+        "Dedicated Support",
+        "Client Invoicing"
+      ],
+      "buttonText": "Contact Us",
+      "buttonVariant": "primary",
+      "order": 3
+    }
+  ],
+  "stats": [
+    { "id": "stat-1", "target": 50, "suffix": "+", "label": "Projects Completed", "order": 1 },
+    { "id": "stat-2", "target": 99, "suffix": "%", "label": "Client Satisfaction", "order": 2 },
+    { "id": "stat-3", "target": 5, "suffix": "+", "label": "Years Experience", "order": 3 },
+    { "id": "stat-4", "target": 20, "suffix": "+", "label": "Happy Clients", "order": 4 }
+  ]
 }

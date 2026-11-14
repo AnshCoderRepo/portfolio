@@ -7,6 +7,8 @@ import { CareerModel, ICareer } from "./models/Career";
 import { AIModelCollection, IAIModel } from "./models/AIModel";
 import { InquiryModel, IInquiry } from "./models/Inquiry";
 import { SiteSettingModel, ISiteSetting } from "./models/SiteSetting";
+import { PricingPlanModel, IPricingPlan } from "./models/PricingPlan";
+import { StatItemModel, IStatItem } from "./models/StatItem";
 
 // Local JSON DB file location for resilient fallback
 const DB_DIR = path.join(process.cwd(), "data", "db");
@@ -19,6 +21,8 @@ interface LocalDatabase {
   models: IAIModel[];
   inquiries: IInquiry[];
   settings: ISiteSetting;
+  pricing: IPricingPlan[];
+  stats: IStatItem[];
 }
 
 const initialSeedData: LocalDatabase = {
@@ -309,6 +313,55 @@ const initialSeedData: LocalDatabase = {
     whatsappMessage: "Hi NSSolutions! I'd like to discuss a project.",
     calendlyUrl: "https://calendly.com/nssolutions",
   },
+  pricing: [
+    {
+      id: "price-1",
+      planName: "Basic",
+      description: "Perfect for personal projects and hobbyists.",
+      price: "0",
+      features: ["1 User", "1GB Storage", "Community Forum"],
+      buttonText: "Get Started",
+      buttonVariant: "secondary",
+      order: 1,
+    },
+    {
+      id: "price-2",
+      planName: "Team",
+      description: "Collaborate with your team on multiple projects.",
+      price: "49",
+      features: [
+        "10 Users",
+        "100GB Storage",
+        "Email Support",
+        "Shared Workspaces",
+      ],
+      buttonText: "Choose Team Plan",
+      isPopular: true,
+      buttonVariant: "primary",
+      order: 2,
+    },
+    {
+      id: "price-3",
+      planName: "Agency",
+      description: "Manage all your clients under one roof.",
+      price: "149",
+      features: [
+        "Unlimited Users",
+        "1TB Storage",
+        "Dedicated Support",
+        "Client Invoicing",
+      ],
+      buttonText: "Contact Us",
+      buttonVariant: "primary",
+      order: 3,
+    },
+  ],
+  stats: [
+    { id: "stat-1", target: 50, suffix: "+", label: "Projects Completed", order: 1 },
+    { id: "stat-2", target: 99, suffix: "%", label: "Client Satisfaction", order: 2 },
+    { id: "stat-3", target: 5, suffix: "+", label: "Years Experience", order: 3 },
+    { id: "stat-4", target: 20, suffix: "+", label: "Happy Clients", order: 4 },
+  ],
 };
 
 // Local JSON File Helpers
@@ -322,7 +375,14 @@ function readLocalDb(): LocalDatabase {
       return initialSeedData;
     }
     const raw = fs.readFileSync(DB_FILE, "utf-8");
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    if (!parsed.pricing || !Array.isArray(parsed.pricing)) {
+      parsed.pricing = initialSeedData.pricing;
+    }
+    if (!parsed.stats || !Array.isArray(parsed.stats)) {
+      parsed.stats = initialSeedData.stats;
+    }
+    return parsed;
   } catch (err) {
     console.error("Error reading local-db.json:", err);
     return initialSeedData;
@@ -386,7 +446,19 @@ export const DataService = {
         await AIModelCollection.insertMany(initialSeedData.models);
         await InquiryModel.insertMany(initialSeedData.inquiries);
         await SiteSettingModel.create(initialSeedData.settings);
+        await PricingPlanModel.insertMany(initialSeedData.pricing);
+        await StatItemModel.insertMany(initialSeedData.stats);
         console.log("Successfully seeded MongoDB with initial NSSolutions data.");
+      } else {
+        // Ensure new collections exist even if projects were already seeded
+        const pricingCount = await PricingPlanModel.countDocuments();
+        if (pricingCount === 0) {
+          await PricingPlanModel.insertMany(initialSeedData.pricing);
+        }
+        const statsCount = await StatItemModel.countDocuments();
+        if (statsCount === 0) {
+          await StatItemModel.insertMany(initialSeedData.stats);
+        }
       }
     } catch (err) {
       console.error("Auto-seed error:", err);
@@ -766,5 +838,120 @@ export const DataService = {
     db.settings = { ...db.settings, ...data, updatedAt: new Date() };
     writeLocalDb(db);
     return db.settings;
+  },
+
+  // ----------------------------------------------------
+  // PRICING PLANS CRUD
+  // ----------------------------------------------------
+  async getPricing(): Promise<IPricingPlan[]> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      await this.autoSeedMongoDBIfEmpty();
+      const docs = await PricingPlanModel.find({}).sort({ order: 1, createdAt: 1 }).lean();
+      return docs.map(normalizeDoc);
+    }
+    const db = readLocalDb();
+    return db.pricing || [];
+  },
+
+  async createPricingPlan(data: Partial<IPricingPlan>): Promise<IPricingPlan> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      const created = await PricingPlanModel.create(data);
+      return normalizeDoc(created);
+    }
+    const db = readLocalDb();
+    const newPlan: IPricingPlan = {
+      id: `price-${Date.now()}`,
+      planName: data.planName || "New Plan",
+      description: data.description || "",
+      price: data.price || "0",
+      period: data.period || "month",
+      features: data.features || [],
+      buttonText: data.buttonText || "Get Started",
+      isPopular: !!data.isPopular,
+      buttonVariant: data.buttonVariant || "primary",
+      order: (db.pricing?.length || 0) + 1,
+    };
+    if (!db.pricing) db.pricing = [];
+    db.pricing.push(newPlan);
+    writeLocalDb(db);
+    return newPlan;
+  },
+
+  async updatePricingPlan(id: string, data: Partial<IPricingPlan>): Promise<IPricingPlan | null> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      const updated = await PricingPlanModel.findByIdAndUpdate(id, data, { new: true }).lean();
+      if (updated) return normalizeDoc(updated);
+    }
+    const db = readLocalDb();
+    const idx = (db.pricing || []).findIndex((p) => p.id === id || (p as any)._id === id);
+    if (idx !== -1) {
+      db.pricing[idx] = { ...db.pricing[idx], ...data };
+      writeLocalDb(db);
+      return db.pricing[idx];
+    }
+    return null;
+  },
+
+  async deletePricingPlan(id: string): Promise<boolean> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      const res = await PricingPlanModel.findByIdAndDelete(id);
+      if (res) return true;
+    }
+    const db = readLocalDb();
+    const before = (db.pricing || []).length;
+    db.pricing = (db.pricing || []).filter((p) => p.id !== id && (p as any)._id !== id);
+    writeLocalDb(db);
+    return db.pricing.length < before;
+  },
+
+  // ----------------------------------------------------
+  // STATS CRUD
+  // ----------------------------------------------------
+  async getStats(): Promise<IStatItem[]> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      await this.autoSeedMongoDBIfEmpty();
+      const docs = await StatItemModel.find({}).sort({ order: 1, createdAt: 1 }).lean();
+      return docs.map(normalizeDoc);
+    }
+    const db = readLocalDb();
+    return db.stats || [];
+  },
+
+  async updateStats(stats: IStatItem[]): Promise<IStatItem[]> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      await StatItemModel.deleteMany({});
+      const created = await StatItemModel.insertMany(stats);
+      return created.map(normalizeDoc);
+    }
+    const db = readLocalDb();
+    db.stats = stats.map((s, idx) => ({
+      ...s,
+      id: s.id || `stat-${idx + 1}`,
+      order: idx + 1,
+    }));
+    writeLocalDb(db);
+    return db.stats;
+  },
+
+  async updateStatItem(id: string, data: Partial<IStatItem>): Promise<IStatItem | null> {
+    const status = await connectToDatabase();
+    if (status.isConnected) {
+      const updated = await StatItemModel.findByIdAndUpdate(id, data, { new: true }).lean();
+      if (updated) return normalizeDoc(updated);
+    }
+    const db = readLocalDb();
+    const idx = (db.stats || []).findIndex((s) => s.id === id || (s as any)._id === id);
+    if (idx !== -1) {
+      db.stats[idx] = { ...db.stats[idx], ...data };
+      writeLocalDb(db);
+      return db.stats[idx];
+    }
+    return null;
   },
 };
